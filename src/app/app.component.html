@@ -1,44 +1,52 @@
-<h1>
-    {{ title }}
-</h1>
+<div class="well">
+    <h1 class="text-center">
+        {{ title }}
+    </h1>
+</div>
 
-<form [formGroup]="userForm">
-    <div class="form-group">
-        <label for="name">Name:</label>
-        <br>
-        <input type="text" class="form-control" formControlName="name">
-    </div>
-    <div class="form-group">
-        <label for="email">Email:</label>
-        <br>
-        <input type="text" class="form-control" formControlName="email">
-    </div>
-    <div formGroupName="address">
-        <div class="form-group">
-            <label for="street">Street:</label>
-            <br>
-            <input type="text" class="form-control" formControlName="street">
-        </div>
-        <div class="form-group">
-            <label for="city">City:</label>
-            <br>
-            <input type="text" class="form-control" formControlName="city">
-        </div>
-        <div class="form-group">
-            <label for="state">State:</label>
-            <br>
-            <input type="text" class="form-control" formControlName="state">
-        </div>
-        <!-- <div FormGroupName="zipcode">
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
-                <label for="zipcode">Zipcodes You Live In:</label>
+                <label for="name">Name:</label>
                 <br>
-                <input type="text" class="form-control" formControlName="zipcode">
+                <input type="text" class="form-control" formControlName="name">
             </div>
-        </div> -->
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <br>
+                <input type="text" class="form-control" formControlName="email">
+            </div>
+            <div formGroupName="address">
+                <div class="form-group">
+                    <label for="street">Street:</label>
+                    <br>
+                    <input type="text" class="form-control" formControlName="street">
+                </div>
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <br>
+                    <input type="text" class="form-control" formControlName="city">
+                </div>
+                <div class="form-group">
+                    <label for="state">State:</label>
+                    <br>
+                    <input type="text" class="form-control" formControlName="state">
+                </div>
+                 <div FormArrayName="zipcode">
+                    <!-- <div class="form-group" *ngFor="let zip of userForm.zipcode.controls; i= index"  [formGroupName]="i"> -->
+                     <div class="form-group"> 
+                        <label for="zipcode">Zipcodes You Live In:</label>
+                        <br>
+                        <!-- <input type="text" class="form-control" formControlName="zipcode"> -->
+                        <input name="zipcode" type="text" class="form-control" formControlName="zipcode"/>
+                    </div>
+                </div> 
+            </div>
+            <button type="submit" class="btn btn-danger">SUBMIT</button>
+    </form>
+    <br>
+    <pre>{{ userForm.value | json }}</pre>
+
     </div>
-</form>
-
-<hr>
-
-<pre>{{ userForm.value | json }}</pre>
+</div>

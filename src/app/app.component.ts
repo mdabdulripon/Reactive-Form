@@ -17,9 +17,11 @@ export class AppComponent {
             street: new FormControl(),
             city: new FormControl(),
             state: new FormControl(),
-            // zipcode: new FormArray({
-            //     // zipcode: new FormControl(),
-            // })
+            zipcode: new FormArray([]),
         })
     });
+    onSubmit() {
+        alert('submiting');
+        console.log(this.userForm.value);
+    }
 }
