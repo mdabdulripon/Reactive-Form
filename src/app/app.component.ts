@@ -13,12 +13,17 @@ export class AppComponent {
     userForm = new FormGroup({
         name: new FormControl(),
         email: new FormControl(),
+        phoneNumber: new FormGroup({
+            phone: new FormControl()
+        }),
         address: new FormGroup({
             street: new FormControl(),
             city: new FormControl(),
             state: new FormControl(),
-            zipcode: new FormArray([]),
-        })
+            zipcode: new FormArray([
+                new FormControl(),
+            ])
+        }),
     });
     onSubmit() {
         alert('submiting');

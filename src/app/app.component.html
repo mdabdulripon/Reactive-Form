@@ -10,13 +10,21 @@
             <div class="form-group">
                 <label for="name">Name:</label>
                 <br>
-                <input type="text" class="form-control" formControlName="name">
+                <input type="text" class="form-control" formControlName="name" required>
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
                 <br>
                 <input type="text" class="form-control" formControlName="email">
             </div>
+            <div formGroupName="phoneNumber">
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <br>
+                    <input type="text" class="form-control" formControlName="phone">
+                </div>
+            </div>    
+
             <div formGroupName="address">
                 <div class="form-group">
                     <label for="street">Street:</label>
@@ -33,20 +41,15 @@
                     <br>
                     <input type="text" class="form-control" formControlName="state">
                 </div>
-                 <div FormArrayName="zipcode">
-                    <!-- <div class="form-group" *ngFor="let zip of userForm.zipcode.controls; i= index"  [formGroupName]="i"> -->
-                     <div class="form-group"> 
-                        <label for="zipcode">Zipcodes You Live In:</label>
-                        <br>
-                        <!-- <input type="text" class="form-control" formControlName="zipcode"> -->
-                        <input name="zipcode" type="text" class="form-control" formControlName="zipcode"/>
+                <!-- <div formArrayName="zip">
+                    <div *ngFor="let z of zip.controls; let i=index">
+                        <input type="text" class="form-control" [formControlName]="i">
                     </div>
-                </div> 
+                </div> -->
             </div>
-            <button type="submit" class="btn btn-danger">SUBMIT</button>
-    </form>
-    <br>
-    <pre>{{ userForm.value | json }}</pre>
-
+            <button type="submit" class="btn btn-danger" [disabled]="!userForm.valid">SUBMIT</button>
+        </form>
+        <br>
+        <pre>{{ userForm.value | json }}</pre>
     </div>
 </div>
