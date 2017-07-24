@@ -4,52 +4,88 @@
     </h1>
 </div>
 
-<div class="row">
+ <div class="row">
     <div class="col-md-4 col-md-offset-4">
-        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+        <div class="well">
+            <h3>
+                CUSTOMER INFO
+            </h3>
+        </div>
+
+        <form [formGroup]="userForm" novalidate (ngSubmit)="onSubmit()">
+
+            <!--BASIC INFO-->
             <div class="form-group">
                 <label for="name">Name:</label>
                 <br>
                 <input type="text" class="form-control" formControlName="name" required>
             </div>
+
             <div class="form-group">
                 <label for="email">Email:</label>
                 <br>
                 <input type="text" class="form-control" formControlName="email">
-            </div>
-            <div formGroupName="phoneNumber">
-                <div class="form-group">
-                    <label for="phone">Phone Number:</label>
-                    <br>
-                    <input type="text" class="form-control" formControlName="phone">
-                </div>
-            </div>    
+            </div> 
 
-            <div formGroupName="address">
-                <div class="form-group">
-                    <label for="street">Street:</label>
-                    <br>
-                    <input type="text" class="form-control" formControlName="street">
-                </div>
-                <div class="form-group">
-                    <label for="city">City:</label>
-                    <br>
-                    <input type="text" class="form-control" formControlName="city">
-                </div>
-                <div class="form-group">
-                    <label for="state">State:</label>
-                    <br>
-                    <input type="text" class="form-control" formControlName="state">
-                </div>
-                <!-- <div formArrayName="zip">
-                    <div *ngFor="let z of zip.controls; let i=index">
-                        <input type="text" class="form-control" [formControlName]="i">
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <br>
+                <input type="text" class="form-control" formControlName="phone">
+            </div> 
+
+            <!--ADDRESS || FAMILY INFO -->
+
+            <div formArrayName="addresses">
+                <div *ngFor="let address of userForm.controls.addresses.controls; let i = index">
+
+                    <div>
+                        <span>Address {{ i + 1 }}</span>
+                        <span *ngIf="userForm.controls.addresses.controls.length > 1" (click)="removeAddress()">
+                        </span>
                     </div>
-                </div> -->
+
+                    <div [formGroupName]="i" class="well">
+                        <div class="form-group">
+                            <label for="street">Street:</label>
+                            <br>
+                            <input type="text" class="form-control" formControlName="street">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city">City:</label>
+                            <br>
+                            <input type="text" class="form-control" formControlName="city">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="state">State:</label>
+                            <br>
+                            <input type="text" class="form-control" formControlName="state">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="zipcode">Zipcode:</label>
+                            <br>
+                            <input type="text" class="form-control" formControlName="zipcode">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="numberOfChildren">Number Of Children:</label>
+                            <br>
+                            <input type="text" class="form-control" formControlName="numberOfChildren">
+                        </div>
+
+                    </div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-danger" [disabled]="!userForm.valid">SUBMIT</button>
+            <button type="button"  class="btn btn-warning" (click)="addAddress()" style="cursor: pointer">
+                Add another address
+            </button>
+            
+            <button type="submit" class="btn btn-danger" [disabled]="!userForm.valid" style="cursor: pointer">SUBMIT</button>
         </form>
         <br>
-        <pre>{{ userForm.value | json }}</pre>
-    </div>
-</div>
+        <pre>{{ userForm.value | json }}</pre> 
+    </div> 
+</div> 

@@ -4,5 +4,5 @@ export interface Address {
     state: string;
     zipcode: string;
     numberOfChildren: string;
-    children: [''];
+    nameOfTheChildren: [''];
 }
