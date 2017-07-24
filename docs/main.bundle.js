@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"well\">\n    <h1 class=\"text-center\">\n        {{ title }}\n    </h1>\n</div>\n\n<div class=\"row\">\n    <div class=\"col-md-4 col-md-offset-4\">\n        <form [formGroup]=\"userForm\" (ngSubmit)=\"onSubmit()\">\n            <div class=\"form-group\">\n                <label for=\"name\">Name:</label>\n                <br>\n                <input type=\"text\" class=\"form-control\" formControlName=\"name\">\n            </div>\n            <div class=\"form-group\">\n                <label for=\"email\">Email:</label>\n                <br>\n                <input type=\"text\" class=\"form-control\" formControlName=\"email\">\n            </div>\n            <div formGroupName=\"address\">\n                <div class=\"form-group\">\n                    <label for=\"street\">Street:</label>\n                    <br>\n                    <input type=\"text\" class=\"form-control\" formControlName=\"street\">\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"city\">City:</label>\n                    <br>\n                    <input type=\"text\" class=\"form-control\" formControlName=\"city\">\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"state\">State:</label>\n                    <br>\n                    <input type=\"text\" class=\"form-control\" formControlName=\"state\">\n                </div>\n                 <div FormArrayName=\"zipcode\">\n                    <!-- <div class=\"form-group\" *ngFor=\"let zip of userForm.zipcode.controls; i= index\"  [formGroupName]=\"i\"> -->\n                     <div class=\"form-group\"> \n                        <label for=\"zipcode\">Zipcodes You Live In:</label>\n                        <br>\n                        <!-- <input type=\"text\" class=\"form-control\" formControlName=\"zipcode\"> -->\n                        <input name=\"zipcode\" type=\"text\" class=\"form-control\" formControlName=\"zipcode\"/>\n                    </div>\n                </div> \n            </div>\n            <button type=\"submit\" class=\"btn btn-danger\">SUBMIT</button>\n    </form>\n    <br>\n    <pre>{{ userForm.value | json }}</pre>\n\n    </div>\n</div>\n"
+module.exports = "<div class=\"well\">\n    <h1 class=\"text-center\">\n        {{ title }}\n    </h1>\n</div>\n\n <div class=\"row\">\n    <div class=\"col-md-4 col-md-offset-4\">\n\n        <div class=\"well\">\n            <h3>\n                CUSTOMER INFO\n            </h3>\n        </div>\n\n        <form [formGroup]=\"userForm\" novalidate (ngSubmit)=\"onSubmit()\">\n\n            <!--BASIC INFO-->\n            <div class=\"form-group\">\n                <label for=\"name\">Name:</label>\n                <br>\n                <input type=\"text\" class=\"form-control\" formControlName=\"name\" required>\n            </div>\n\n            <div class=\"form-group\">\n                <label for=\"email\">Email:</label>\n                <br>\n                <input type=\"text\" class=\"form-control\" formControlName=\"email\">\n            </div> \n\n            <div class=\"form-group\">\n                <label for=\"phone\">Phone:</label>\n                <br>\n                <input type=\"text\" class=\"form-control\" formControlName=\"phone\">\n            </div> \n\n            <!--ADDRESS || FAMILY INFO -->\n\n            <div formArrayName=\"addresses\">\n                <div *ngFor=\"let address of userForm.controls.addresses.controls; let i = index\">\n\n                    <div>\n                        <span>Address {{ i + 1 }}</span>\n                        <span *ngIf=\"userForm.controls.addresses.controls.length > 1\" (click)=\"removeAddress()\">\n                        </span>\n                    </div>\n\n                    <div [formGroupName]=\"i\" class=\"well\">\n                        <div class=\"form-group\">\n                            <label for=\"street\">Street:</label>\n                            <br>\n                            <input type=\"text\" class=\"form-control\" formControlName=\"street\">\n                        </div>\n\n                        <div class=\"form-group\">\n                            <label for=\"city\">City:</label>\n                            <br>\n                            <input type=\"text\" class=\"form-control\" formControlName=\"city\">\n                        </div>\n\n                        <div class=\"form-group\">\n                            <label for=\"state\">State:</label>\n                            <br>\n                            <input type=\"text\" class=\"form-control\" formControlName=\"state\">\n                        </div>\n\n                        <div class=\"form-group\">\n                            <label for=\"zipcode\">Zipcode:</label>\n                            <br>\n                            <input type=\"text\" class=\"form-control\" formControlName=\"zipcode\">\n                        </div>\n\n                        <div class=\"form-group\">\n                            <label for=\"numberOfChildren\">Number Of Children:</label>\n                            <br>\n                            <input type=\"text\" class=\"form-control\" formControlName=\"numberOfChildren\">\n                        </div>\n\n                    </div>\n                </div>\n            </div>\n            <button type=\"button\"  class=\"btn btn-warning\" (click)=\"addAddress()\" style=\"cursor: pointer\">\n                Add another address\n            </button>\n            \n            <button type=\"submit\" class=\"btn btn-danger\" [disabled]=\"!userForm.valid\" style=\"cursor: pointer\">SUBMIT</button>\n        </form>\n        <br>\n        <pre>{{ userForm.value | json }}</pre> \n    </div> \n</div> \n"
 
 /***/ }),
 
@@ -51,22 +51,67 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
 
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(fb) {
+        this.fb = fb;
         this.title = 'REACTIVE FORM || MODEL DRIVEN FORM';
-        this.userForm = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormGroup */]({
-            name: new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */](),
-            email: new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */](),
-            address: new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormGroup */]({
-                street: new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */](),
-                city: new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */](),
-                state: new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */](),
-                zipcode: new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormArray */]([]),
-            })
-        });
     }
+    AppComponent.prototype.ngOnInit = function () {
+        this.userForm = this.fb.group({
+            name: ['', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* Validators */].minLength(5)]],
+            email: [''],
+            phone: [''],
+            addresses: this.fb.array([
+                this.initAddress(),
+            ])
+        });
+    };
+    AppComponent.prototype.initAddress = function () {
+        return this.fb.group({
+            street: [''],
+            city: [''],
+            state: [''],
+            zipcode: [''],
+            numberOfChildren: [''],
+            nameOfTheChildren: this.fb.array([
+                this.initNameOfTheChildren(),
+            ]),
+        });
+    };
+    AppComponent.prototype.initNameOfTheChildren = function () {
+        // nameOfTheChildren: [''],
+        // return this.fb.control({
+        //     nameOfTheChildren: ['']
+        // })
+    };
+    AppComponent.prototype.addAddress = function () {
+        var control = this.userForm.controls['addresses'];
+        control.push(this.initAddress());
+    };
+    AppComponent.prototype.removeAddress = function (i) {
+        var control = this.userForm.controls['addresses'];
+        control.removeAt(i);
+    };
+    // userForm = new FormGroup({
+    //     name: new FormControl(),
+    //     email: new FormControl(),
+    //     phoneNumber: new FormGroup({
+    //         phone: new FormControl()
+    //     }),
+    //     address: new FormGroup({
+    //         street: new FormControl(),
+    //         city: new FormControl(),
+    //         state: new FormControl(),
+    //         zipcode: new FormArray([
+    //             new FormControl(),
+    //         ])
+    //     }),
+    // });
     AppComponent.prototype.onSubmit = function () {
         alert('submiting');
         console.log(this.userForm.value);
@@ -78,9 +123,11 @@ AppComponent = __decorate([
         selector: 'app-root',
         template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.css")]
-    })
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */]) === "function" && _a || Object])
 ], AppComponent);
 
+var _a;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -116,7 +163,7 @@ AppModule = __decorate([
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["d" /* ReactiveFormsModule */]
+            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* ReactiveFormsModule */]
         ],
         providers: [],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */]]
