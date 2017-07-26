@@ -39,10 +39,9 @@
             <div formArrayName="addresses">
                 <div *ngFor="let address of userForm.controls.addresses.controls; let i = index">
 
-                    <div>
-                        <span>Address {{ i + 1 }}</span>
-                        <span *ngIf="userForm.controls.addresses.controls.length > 1" (click)="removeAddress()">
-                        </span>
+                    <div class="well" style="background: #C00C00">
+                        <b>Address {{i + 1}}</b>
+                        <span class="glyphicon glyphicon-remove pull-right" *ngIf="userForm.controls.addresses.controls.length > 1" (click)="removeAddress(i)"></span>
                     </div>
 
                     <div [formGroupName]="i" class="well">
@@ -75,6 +74,20 @@
                             <br>
                             <input type="text" class="form-control" formControlName="numberOfChildren">
                         </div>
+
+                        <!-- <div class="form-group">
+                            <label for="children">Children List:</label>
+                            <br>
+                            <input type="text" class="form-control" formControlName="children">
+                        </div> -->
+
+
+                        <!-- Children Array  -->
+                         <!-- <div formArrayName="children">
+                            <div *ngFor="let child of userForm.controls.addresses.controls.children.controls; let j = index">
+                                 <input type="text" class="form-control" formControlName="{{j}}">
+                            </div>
+                        </div>  -->
 
                     </div>
                 </div>

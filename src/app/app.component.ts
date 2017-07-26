@@ -37,17 +37,15 @@ export class AppComponent implements OnInit {
             state: [''],
             zipcode: [''],
             numberOfChildren: [''],
-            nameOfTheChildren: this.fb.array([
-                this.initNameOfTheChildren(),
+            children: this.fb.array([
+                this.initChildren(),
             ]),
         })
     }
 
-    initNameOfTheChildren() {
-        // nameOfTheChildren: [''],
-        // return this.fb.control({
-        //     nameOfTheChildren: ['']
-        // })
+    initChildren() {
+        // children: [''],
+        // return this.fb.array([''])
     }
 
     addAddress() {
