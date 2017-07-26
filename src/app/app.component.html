@@ -75,19 +75,20 @@
                             <input type="text" class="form-control" formControlName="numberOfChildren">
                         </div>
 
-                        <!-- <div class="form-group">
+                        <!-- Children Array  -->
+                        <!-- <div formArrayName="children"> -->
+                             <!-- <div *ngFor="let child of address.controls.children.controls; let j = index"> -->
+
+
+                        <div class="form-group">
                             <label for="children">Children List:</label>
                             <br>
                             <input type="text" class="form-control" formControlName="children">
-                        </div> -->
+                        </div>
 
 
-                        <!-- Children Array  -->
-                         <!-- <div formArrayName="children">
-                            <div *ngFor="let child of userForm.controls.addresses.controls.children.controls; let j = index">
-                                 <input type="text" class="form-control" formControlName="{{j}}">
-                            </div>
-                        </div>  -->
+                            <!-- </div>  -->
+                        <!-- </div>   -->
 
                     </div>
                 </div>

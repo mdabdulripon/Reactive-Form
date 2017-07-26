@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-    ){}
+    ) { }
 
     ngOnInit() {
         this.userForm = this.fb.group({
@@ -37,16 +37,20 @@ export class AppComponent implements OnInit {
             state: [''],
             zipcode: [''],
             numberOfChildren: [''],
-            children: this.fb.array([
-                this.initChildren(),
-            ]),
-        })
+            children: this.fb.array([]),
+        });
     }
 
-    initChildren() {
-        // children: [''],
-        // return this.fb.array([''])
-    }
+    // get children(): FormArray {
+    //     return this.userForm.get('children') as FormArray;
+    // }
+
+
+    // initChildren() {
+    //     return this.fb.group({
+    //         children: [''],
+    //     });
+    // }
 
     addAddress() {
         const control = <FormArray>this.userForm.controls['addresses'];
@@ -56,22 +60,6 @@ export class AppComponent implements OnInit {
         const control = <FormArray>this.userForm.controls['addresses'];
         control.removeAt(i);
     }
-
-    // userForm = new FormGroup({
-    //     name: new FormControl(),
-    //     email: new FormControl(),
-    //     phoneNumber: new FormGroup({
-    //         phone: new FormControl()
-    //     }),
-    //     address: new FormGroup({
-    //         street: new FormControl(),
-    //         city: new FormControl(),
-    //         state: new FormControl(),
-    //         zipcode: new FormArray([
-    //             new FormControl(),
-    //         ])
-    //     }),
-    // });
 
 
     onSubmit() {
