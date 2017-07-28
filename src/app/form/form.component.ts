@@ -7,6 +7,8 @@ import { Place } from '../model/place';
 import { City } from '../model/city';
 import { Passenger } from '../model/passenger';
 
+import { PassengerServiceService } from '../passenger-service.service';
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -20,7 +22,7 @@ export class FormComponent implements OnInit {
 	constructor(
 		private fb: FormBuilder,
 		private activatedRoute: ActivatedRoute,
-
+		private myservice: PassengerServiceService
 	) {
 		if('id' in this.activatedRoute.snapshot.params) {
 			this.editingStatus = true;
@@ -30,7 +32,27 @@ export class FormComponent implements OnInit {
 	ngOnInit() {
 		if (this.editingStatus) {
 			// this.passenger = this.
+			this.passenger = this.myservice.getPasserger()
+			this.initForm(this.passenger)
+		}else {
+			this.initForm()
 		}
 	}
+
+	initForm(passenger?: Passenger ):void {
+		
+		let name: string;
+
+		if (passenger) {
+			name = passenger.name;
+		} else {
+			name = ''
+		}
+
+
+
+	}
+
+
 
 }

@@ -9,6 +9,7 @@ import { routes } from './app.routes';
 import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
 
+import { PassengerServiceService } from './passenger-service.service';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,9 @@ import { FormComponent } from './form/form.component';
         HttpModule,
         RouterModule.forRoot(routes),
     ],
-    providers: [],
+    providers: [
+        PassengerServiceService,
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
