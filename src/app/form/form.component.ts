@@ -42,13 +42,41 @@ export class FormComponent implements OnInit {
 	initForm(passenger?: Passenger ):void {
 		
 		let name: string;
-
 		if (passenger) {
 			name = passenger.name;
 		} else {
-			name = ''
+			name = '';
 		}
 
+		let cities: FormArray = new FormArray([]);
+		let places: FormArray = new FormArray([]);
+
+		this.passengerForm = new FormGroup({
+			name: new FormControl('', Validators.required),
+			cities: cities
+		})
+
+		// if(!passenger) {
+		// 	this.addCity();
+		// 	this.addPlace(0)
+		// }else {
+		// 	passenger.cities.forEach((city, cityIndex)=> {
+		// 		this.addCity(city);
+		// 		city.places.forEach((place, placeIndex)=> {
+		// 			this.addPlace(cityIndex, place)
+		// 		})
+		// 	})
+		// }
+
+		// addCity(city?: City):void {
+		// 	let places = new FormArray([]);
+		// 	let name = city
+
+		// }
+
+		// addPlace(place? Place):void {
+
+		// }
 
 
 	}
