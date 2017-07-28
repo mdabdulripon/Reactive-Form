@@ -1,5 +1,13 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, EventEmitter, OnInit} from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { Observable } from 'rxjs/Observable';
+
+import { Passenger } from './model/passenger';
+
+
+
 
 
 // import { Passenger } from './model/passenger';
