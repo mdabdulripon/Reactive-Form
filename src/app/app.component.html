@@ -12,10 +12,9 @@
                 CUSTOMER INFO
             </h3>
         </div>
-
+<!-- 
         <form [formGroup]="userForm" novalidate (ngSubmit)="onSubmit()">
 
-            <!--BASIC INFO-->
             <div class="form-group">
                 <label for="name">Name:</label>
                 <br>
@@ -33,8 +32,6 @@
                 <br>
                 <input type="text" class="form-control" formControlName="phone">
             </div> 
-
-            <!--ADDRESS || FAMILY INFO -->
 
             <div formArrayName="addresses">
                 <div *ngFor="let address of userForm.controls.addresses.controls; let i = index">
@@ -75,10 +72,6 @@
                             <input type="text" class="form-control" formControlName="numberOfChildren">
                         </div>
 
-                        <!-- Children Array  -->
-                        <!-- <div formArrayName="children"> -->
-                             <!-- <div *ngFor="let child of address.controls.children.controls; let j = index"> -->
-
 
                         <div class="form-group">
                             <label for="children">Children List:</label>
@@ -87,8 +80,6 @@
                         </div>
 
 
-                            <!-- </div>  -->
-                        <!-- </div>   -->
 
                     </div>
                 </div>
@@ -98,7 +89,7 @@
             </button>
             
             <button type="submit" class="btn btn-danger" [disabled]="!userForm.valid" style="cursor: pointer">SUBMIT</button>
-        </form>
+        </form> -->
         <br>
         <pre>{{ userForm.value | json }}</pre> 
     </div> 

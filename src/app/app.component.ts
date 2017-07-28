@@ -1,7 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 
-import { Info } from './model/info';
+
+// import { Passenger } from './model/passenger';
 
 @Component({
     selector: 'app-root',
@@ -13,33 +14,33 @@ export class AppComponent implements OnInit {
 
     title = 'REACTIVE FORM || MODEL DRIVEN FORM';
 
-    public userForm: FormGroup;
+    // public userForm: FormGroup;
 
     constructor(
         private fb: FormBuilder,
     ) { }
 
     ngOnInit() {
-        this.userForm = this.fb.group({
-            name: ['', [Validators.required, Validators.minLength(5)]],
-            email: [''],
-            phone: [''],
-            addresses: this.fb.array([
-                this.initAddress(),
-            ])
-        });
+        // this.userForm = this.fb.group({
+        //     name: ['', [Validators.required, Validators.minLength(5)]],
+        //     email: [''],
+        //     phone: [''],
+        //     addresses: this.fb.array([
+        //         this.initAddress(),
+        //     ])
+        // });
     }
 
-    initAddress() {
-        return this.fb.group({
-            street: [''],
-            city: [''],
-            state: [''],
-            zipcode: [''],
-            numberOfChildren: [''],
-            children: this.fb.array([]),
-        });
-    }
+    // initAddress() {
+        // return this.fb.group({
+        //     street: [''],
+        //     city: [''],
+        //     state: [''],
+        //     zipcode: [''],
+        //     numberOfChildren: [''],
+        //     children: this.fb.array([]),
+        // });
+    // }
 
     // get children(): FormArray {
     //     return this.userForm.get('children') as FormArray;
@@ -52,18 +53,18 @@ export class AppComponent implements OnInit {
     //     });
     // }
 
-    addAddress() {
-        const control = <FormArray>this.userForm.controls['addresses'];
-        control.push(this.initAddress());
-    }
-    removeAddress(i: number) {
-        const control = <FormArray>this.userForm.controls['addresses'];
-        control.removeAt(i);
-    }
+    // addAddress() {
+    //     const control = <FormArray>this.userForm.controls['addresses'];
+    //     control.push(this.initAddress());
+    // }
+    // removeAddress(i: number) {
+    //     const control = <FormArray>this.userForm.controls['addresses'];
+    //     control.removeAt(i);
+    // }
 
 
-    onSubmit() {
-        alert('submiting');
-        console.log(this.userForm.value);
-    }
+    // onSubmit() {
+    //     alert('submiting');
+    //     console.log(this.userForm.value);
+    // }
 }
