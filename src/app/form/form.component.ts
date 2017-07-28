@@ -15,6 +15,9 @@ import { PassengerServiceService } from '../passenger-service.service';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
+
+
+	title = 'REACTIVE FORM || MODEL DRIVEN FORM : UBER PASSANGER INFO';
 	passenger: Passenger;
 	passengerForm: FormGroup;
 	editingStatus: boolean = false;
@@ -53,34 +56,43 @@ export class FormComponent implements OnInit {
 
 		this.passengerForm = new FormGroup({
 			name: new FormControl('', Validators.required),
+			numberofPassenger: new FormControl('', Validators.required),
 			cities: cities
 		})
 
-		// if(!passenger) {
-		// 	this.addCity();
-		// 	this.addPlace(0)
-		// }else {
-		// 	passenger.cities.forEach((city, cityIndex)=> {
-		// 		this.addCity(city);
-		// 		city.places.forEach((place, placeIndex)=> {
-		// 			this.addPlace(cityIndex, place)
-		// 		})
-		// 	})
-		// }
-
-		// addCity(city?: City):void {
-		// 	let places = new FormArray([]);
-		// 	let name = city
-
-		// }
-
-		// addPlace(place? Place):void {
-
-		// }
-
-
+		if(!passenger) {
+			this.addCity();
+			this.addPlace(0);
+		}else {
+			passenger.cities.forEach((city, cityIndex)=> {
+				this.addCity(city);
+				city.places.forEach((place, placeIndex)=> {
+					this.addPlace(cityIndex, place);
+				})
+			})
+		}
 	}
 
+	addCity(city?: City):void {
+		let places = new FormArray([]);
+		let name = city ? city.cityName: '';
+		(<FormArray>this.passengerForm.controls['cities']).push(
+			new FormGroup({
+				cityName: new FormControl(name, Validators.required),
+				places: places
+			})
+		)
+	}
 
+	addPlace(cityIndex: number, place?: Place):void {
+		let name = place ? place.placeName : '';
+
+		(<FormArray>(<FormGroup>(<FormArray>this.passengerForm.controls['cities'])
+      		.controls[cityIndex]).controls['places']).push(
+			new FormGroup({
+				placeName: new FormControl(name, Validators.required),
+			})
+		)
+	}
 
 }
