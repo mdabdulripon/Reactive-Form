@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators  } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 // Model
 import { Place } from '../model/place';
@@ -12,10 +13,24 @@ import { Passenger } from '../model/passenger';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
+	passenger: Passenger;
+	passengerForm: FormGroup;
+	editingStatus: boolean = false;
 
-  constructor() { }
+	constructor(
+		private fb: FormBuilder,
+		private activatedRoute: ActivatedRoute,
 
-  ngOnInit() {
-  }
+	) {
+		if('id' in this.activatedRoute.snapshot.params) {
+			this.editingStatus = true;
+		}
+	 }
+
+	ngOnInit() {
+		if (this.editingStatus) {
+			// this.passenger = this.
+		}
+	}
 
 }
