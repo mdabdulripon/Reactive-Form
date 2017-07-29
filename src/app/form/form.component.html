@@ -1,20 +1,77 @@
 <div class="well">
-    <h1 class="text-center">
+    <h3 class="text-center">
         {{ title }}
-    </h1>
+    </h3>
 </div>
 
 <div class="row">
-	<div class="col-md-4 col-md-offset-4">
+	<div class="col-md-6 col-md-offset-3">
 
 		<div class="well">
-			<h3>
-				CUSTOMER INFO
-			</h3>
+			<div class="btn-group btn-group-justified">
+				<a href="" [routerLink]="['/passenger', 'create']" class="btn btn-primary">Create Passenger</a>
+				<a href="" [routerLink]="['/passenger', 1, 'edit']" class="btn btn-primary">Edit Passenger</a>
+			</div>
 		</div>
+
+		<form [formGroup]="passengerForm" novalidate (ngSubmit)="onSubmit()">
+
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <br>
+                <input type="text" class="form-control" formControlName="name" required>
+            </div>
+
+			<div class="form-group">
+				<label for="numberofPassenger">Number Of Passenger:</label>
+				<br>
+				<input type="text" class="form-control" formControlName="numberofPassenger">
+			</div>   
+			
+            <div formArrayName="cities" class="well">
+
+				<div *ngFor="let city of passengerForm.controls['cities'].controls; let i = index">
+                    <div formGroupName="{{i}}"> 
+                        <div class="form-group">
+                            <label for="street">City Name : </label>
+                            <br>
+                            <input type="text" class="form-control" formControlName="cityName">
+						</div>
+
+						<div formArrayName="places">
+							<div *ngFor="let place of city.controls['places'].controls; let j = index">
+								<div class="place-box" formGroupName="{{j}}">
+									 <div class="form-group">
+										<label for="street">Place Name : </label>
+										<br>
+										<input type="text" class="form-control" formControlName="placeName">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<button type="button" class="btn" (click)="addPlace(i)">ADD MORE PLACE</button> 
+					<hr>
+				</div>
+				
+				<button class="btn" type="button" (click)="addCity()">ADD MORE CITY</button>
+            </div>
+			<div class="row">
+				<div class="col-xs-12">
+					<button class="btn btn-warning" (click)="onCancel()">Cancel</button>
+					<button type="submit" *ngIf="!isEditing" class="btn btn-primary" [disabled]="!passengerForm.valid" >Save</button>
+					<button type="submit" *ngIf="isEditing" class="btn btn-primary" [disabled]="!passengerForm.valid" >Update</button>  
+				</div>
+			</div>
+		</form>
 	</div>
 </div>
+<br>
+<br>
 
-
-
-<pre>{{ passengerForm.value | json }}</pre>  
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<h3>Form Validity: {{passengerForm.valid}}</h3>
+		<pre>{{ passengerForm.value | json }}</pre>  
+	</div>
+</div>

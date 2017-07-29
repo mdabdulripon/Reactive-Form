@@ -20,8 +20,6 @@ import { Passenger } from './model/passenger';
 
 export class AppComponent implements OnInit {
 
-    title = 'REACTIVE FORM || MODEL DRIVEN FORM';
-
     // public userForm: FormGroup;
 
     constructor(
