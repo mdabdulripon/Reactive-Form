@@ -30,11 +30,6 @@
 			
             <div formArrayName="cities" class="well">
 
-				<div class="well" style="background: #C00C00">
-					<b>	Address {{i + 1}} </b>
-					<span class="glyphicon glyphicon-remove pull-right" *ngIf="passengerForm.controls.cities.controls.length > 1" (click)="removeAddress(i)"></span>
-				</div>
-					
 				<div *ngFor="let city of passengerForm.controls['cities'].controls; let i = index">
                     <div formGroupName="{{i}}"> 
                         <div class="form-group">
@@ -42,11 +37,11 @@
                             <br>
                             <input type="text" class="form-control" formControlName="cityName">
 						</div>
-						
+
 						<div formArrayName="places">
 							<div *ngFor="let place of city.controls['places'].controls; let j = index">
 								<div class="place-box" formGroupName="{{j}}">
-									<div class="form-group">
+									 <div class="form-group">
 										<label for="street">Place Name : </label>
 										<br>
 										<input type="text" class="form-control" formControlName="placeName">
@@ -54,17 +49,18 @@
 								</div>
 							</div>
 						</div>
-
-
-
-                    </div>
-                </div>
+					</div>
+					<button type="button" class="btn" (click)="addPlace(i)">ADD MORE PLACE</button> 
+					<hr>
+				</div>
+				
+				<button class="btn" type="button" (click)="addCity()">ADD MORE CITY</button>
             </div>
 			<div class="row">
 				<div class="col-xs-12">
-					<button class="ui secondary basic button" (click)="onCancel()">Cancel</button>
-					<!-- <button type="submit" *ngIf="!isEditing" class="ui primary basic button" [disabled]="!passangerForm.valid" >Save</button>
-					<button type="submit" *ngIf="isEditing" class="ui primary basic button" [disabled]="!passangerForm.valid" >Update</button> -->
+					<button class="btn btn-warning" (click)="onCancel()">Cancel</button>
+					<button type="submit" *ngIf="!isEditing" class="btn btn-primary" [disabled]="!passengerForm.valid" >Save</button>
+					<button type="submit" *ngIf="isEditing" class="btn btn-primary" [disabled]="!passengerForm.valid" >Update</button>  
 				</div>
 			</div>
 		</form>
@@ -75,6 +71,7 @@
 
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
+		<h3>Form Validity: {{passengerForm.valid}}</h3>
 		<pre>{{ passengerForm.value | json }}</pre>  
 	</div>
 </div>
