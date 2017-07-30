@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 
-import { Passenger } from './model/passenger';
+import { CompanyInfo } from './model/company';
 
 
 

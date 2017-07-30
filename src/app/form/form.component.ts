@@ -3,11 +3,10 @@ import { FormBuilder, FormGroup, FormArray, FormControl, Validators  } from '@an
 import { Router, ActivatedRoute } from '@angular/router';
 
 // Model
-// import { Place } from '../model/place';
 import { City } from '../model/city';
-import { Passenger } from '../model/passenger';
+import { CompanyInfo } from '../model/company';
 
-import { PassengerServiceService } from '../passenger-service.service';
+import { companyServiceService } from '../company-service.service';
 
 @Component({
   selector: 'app-form',
@@ -18,14 +17,14 @@ export class FormComponent implements OnInit {
 
 
 	title = 'REACTIVE FORM || MODEL DRIVEN FORM : UBER PASSANGER INFO';
-	passenger: Passenger;
+	// passenger: Passenger;
 	passengerForm: FormGroup;
 	editingStatus: boolean = false;
 
 	constructor(
 		private fb: FormBuilder,
 		private activatedRoute: ActivatedRoute,
-		private myservice: PassengerServiceService
+		// private myservice: PassengerServiceService
 	) {
 		if('id' in this.activatedRoute.snapshot.params) {
 			this.editingStatus = true;
@@ -41,23 +40,23 @@ export class FormComponent implements OnInit {
 		// }
 	}
 
-	initForm(passenger?: Passenger ):void {
+	// initForm(comapny?: CompanyInfo ):void {
 		
-		let name: string;
-		if (passenger) {
-			name = passenger.name;
-		} else {
-			name = '';
-		}
+	// 	let name: string;
+	// 	if (passenger) {
+	// 		name = passenger.name;
+	// 	} else {
+	// 		name = '';
+	// 	}
 
-		let cities: FormArray = new FormArray([]);
-		let places: FormArray = new FormArray([]);
+	// 	let cities: FormArray = new FormArray([]);
+	// 	let places: FormArray = new FormArray([]);
 
-		this.passengerForm = new FormGroup({
-			name: new FormControl('', Validators.required),
-			numberofPassenger: new FormControl('', Validators.required),
-			cities: cities
-		})
+	// 	this.passengerForm = new FormGroup({
+	// 		name: new FormControl('', Validators.required),
+	// 		numberofPassenger: new FormControl('', Validators.required),
+	// 		cities: cities
+	// 	})
 
 		// if(!passenger) {
 		// 	this.addCity();
@@ -70,7 +69,7 @@ export class FormComponent implements OnInit {
 		// 		})
 		// 	})
 		// }
-	}
+	// }
 
 	// addCity(city?: City):void {
 	// 	let places = new FormArray([]);

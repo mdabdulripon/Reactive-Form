@@ -10,25 +10,27 @@ import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { PassengerData } from './passenger.data';
+import { CompanyData } from './company.data';
 
-import { PassengerServiceService } from './passenger-service.service';
+import { companyServiceService } from './company-service.service';
+import { ListComponent } from './list/list.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         FormComponent,
+        ListComponent,
     ],
     imports: [
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-        InMemoryWebApiModule.forRoot(PassengerData),
+        InMemoryWebApiModule.forRoot(CompanyData),
         HttpModule,
         RouterModule.forRoot(routes),
     ],
     providers: [
-        PassengerServiceService,
+        companyServiceService,
     ],
     bootstrap: [AppComponent]
 })
