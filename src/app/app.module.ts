@@ -9,6 +9,9 @@ import { routes } from './app.routes';
 import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
 
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { PassengerData } from './passenger.data';
+
 import { PassengerServiceService } from './passenger-service.service';
 
 @NgModule({
@@ -20,6 +23,7 @@ import { PassengerServiceService } from './passenger-service.service';
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
+        InMemoryWebApiModule.forRoot(PassengerData),
         HttpModule,
         RouterModule.forRoot(routes),
     ],

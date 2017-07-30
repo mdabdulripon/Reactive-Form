@@ -14,7 +14,7 @@
 			</div>
 		</div>
 
-		<form [formGroup]="passengerForm" novalidate (ngSubmit)="onSubmit()">
+		<!-- <form [formGroup]="passengerForm" novalidate (ngSubmit)="onSubmit()">
 
             <div class="form-group">
                 <label for="name">Name:</label>
@@ -30,7 +30,7 @@
 			
             <div formArrayName="cities" class="well">
 
-				<div *ngFor="let city of passengerForm.controls['cities'].controls; let i = index">
+				<div *ngFor="let city of passengerForm.controls['cities'].controls; let i = index" style="border: 2px solid #C00C00; padding: 30px; margin: 5px 0px">
                     <div formGroupName="{{i}}"> 
                         <div class="form-group">
                             <label for="street">City Name : </label>
@@ -44,16 +44,15 @@
 									 <div class="form-group">
 										<label for="street">Place Name : </label>
 										<br>
-										<input type="text" class="form-control" formControlName="placeName">
+										<input type="text" class="form-control" formControlName="places">
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<button type="button" class="btn" (click)="addPlace(i)">ADD MORE PLACE</button> 
-					<hr>
 				</div>
-				
+				<hr>
 				<button class="btn" type="button" (click)="addCity()">ADD MORE CITY</button>
             </div>
 			<div class="row">
@@ -63,7 +62,7 @@
 					<button type="submit" *ngIf="isEditing" class="btn btn-primary" [disabled]="!passengerForm.valid" >Update</button>  
 				</div>
 			</div>
-		</form>
+		</form> -->
 	</div>
 </div>
 <br>

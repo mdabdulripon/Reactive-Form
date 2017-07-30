@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, FormArray, FormControl, Validators  } from '@an
 import { Router, ActivatedRoute } from '@angular/router';
 
 // Model
-import { Place } from '../model/place';
+// import { Place } from '../model/place';
 import { City } from '../model/city';
 import { Passenger } from '../model/passenger';
 
@@ -33,13 +33,12 @@ export class FormComponent implements OnInit {
 	 }
 
 	ngOnInit() {
-		if (this.editingStatus) {
-			// this.passenger = this.
-			this.passenger = this.myservice.getPasserger()
-			this.initForm(this.passenger)
-		}else {
-			this.initForm()
-		}
+		// if (this.editingStatus) {
+		// 	this.passenger = this.myservice.getPasserger()
+		// 	this.initForm(this.passenger)
+		// }else {
+		// 	this.initForm()
+		// }
 	}
 
 	initForm(passenger?: Passenger ):void {
@@ -60,39 +59,38 @@ export class FormComponent implements OnInit {
 			cities: cities
 		})
 
-		if(!passenger) {
-			this.addCity();
-			this.addPlace(0);
-		}else {
-			passenger.cities.forEach((city, cityIndex)=> {
-				this.addCity(city);
-				city.places.forEach((place, placeIndex)=> {
-					this.addPlace(cityIndex, place);
-				})
-			})
-		}
+		// if(!passenger) {
+		// 	this.addCity();
+		// 	this.addPlace(0);
+		// }else {
+		// 	passenger.cities.forEach((city, cityIndex)=> {
+		// 		this.addCity(city);
+		// 		city.places.forEach((place, placeIndex)=> {
+		// 			this.addPlace(cityIndex, place);
+		// 		})
+		// 	})
+		// }
 	}
 
-	addCity(city?: City):void {
-		let places = new FormArray([]);
-		let name = city ? city.cityName: '';
-		(<FormArray>this.passengerForm.controls['cities']).push(
-			new FormGroup({
-				cityName: new FormControl(name, Validators.required),
-				places: places
-			})
-		)
-	}
+	// addCity(city?: City):void {
+	// 	let places = new FormArray([]);
+	// 	let name = city ? city.cityName: '';
+	// 	(<FormArray>this.passengerForm.controls['cities']).push(
+	// 		new FormGroup({
+	// 			cityName: new FormControl(name, Validators.required),
+	// 			places: places
+	// 		})
+	// 	)
+	// }
 
-	addPlace(cityIndex: number, place?: Place):void {
-		let name = place ? place.placeName : '';
+	// addPlace(cityIndex: number, place?):void {
+	// 	let name = place ? place.places: [''];
 
-		(<FormArray>(<FormGroup>(<FormArray>this.passengerForm.controls['cities'])
-      		.controls[cityIndex]).controls['places']).push(
-			new FormGroup({
-				placeName: new FormControl(name, Validators.required),
-			})
-		)
-	}
-
+	// 	(<FormArray>(<FormGroup>(<FormArray>this.passengerForm.controls['cities'])
+    //   		.controls[cityIndex]).controls['places']).push(
+	// 		new FormGroup({
+	// 			places: new FormControl(name, Validators.required),
+	// 		})
+	// 	)
+	// }
 }
