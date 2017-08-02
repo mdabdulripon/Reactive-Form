@@ -10,7 +10,7 @@ export class CompanyData implements InMemoryDbService {
                 'companyName': 'Aamplify',
                 'companyUrl': 'http://www.aamplify.partners/',
                 'companyBio': 'Outsource marketing & digital expertise.',
-                'facebook': '',
+                'facebook': 'https://facebook.com/Aamplifynz',
                 'twiter': 'https://twitter.com/Aamplifynz',
                 'linkedin': 'https://nz.linkedin.com/company/aamplify',
                 'cities': [{
@@ -26,7 +26,7 @@ export class CompanyData implements InMemoryDbService {
                 'companyName': 'Bluescape',
                 'companyUrl': 'http://www.aamplify.partners/',
                 'companyBio': 'Outsource marketing & digital expertise.',
-                'facebook': '',
+                'facebook': 'https://twitter.com/Bluescape',
                 'twiter': 'https://twitter.com/Aamplifynz',
                 'linkedin': 'https://nz.linkedin.com/company/aamplify',
                 'cities': [{
@@ -39,7 +39,7 @@ export class CompanyData implements InMemoryDbService {
                 'companyName': 'Celtra',
                 'companyUrl': 'http://www.aamplify.partners/',
                 'companyBio': 'Outsource marketing & digital expertise.',
-                'facebook': '',
+                'facebook': 'https://twitter.com/Celtra',
                 'twiter': 'https://twitter.com/Aamplifynz',
                 'linkedin': 'https://nz.linkedin.com/company/aamplify',
                 'cities': [{
@@ -52,7 +52,7 @@ export class CompanyData implements InMemoryDbService {
                 'companyName': 'Zinith',
                 'companyUrl': 'http://www.aamplify.partners/',
                 'companyBio': 'Outsource marketing & digital expertise.',
-                'facebook': '',
+                'facebook': 'https://facebook.com/Zinith',
                 'twiter': 'https://twitter.com/Aamplifynz',
                 'linkedin': 'https://nz.linkedin.com/company/aamplify',
                 'cities': [{
@@ -65,7 +65,7 @@ export class CompanyData implements InMemoryDbService {
                 'companyName': 'Apex',
                 'companyUrl': 'http://www.aamplify.partners/',
                 'companyBio': 'Outsource marketing & digital expertise.',
-                'facebook': '',
+                 'facebook': 'https://facebook.com/Apex',
                 'twiter': 'https://twitter.com/Aamplifynz',
                 'linkedin': 'https://nz.linkedin.com/company/aamplify',
                 'cities': [{
@@ -78,7 +78,7 @@ export class CompanyData implements InMemoryDbService {
                 'companyName': 'Ajax',
                 'companyUrl': 'http://www.aamplify.partners/',
                 'companyBio': 'Outsource marketing & digital expertise.',
-                'facebook': '',
+                'facebook': 'https://facebook.com/Ajax',
                 'twiter': 'https://twitter.com/Aamplifynz',
                 'linkedin': 'https://nz.linkedin.com/company/aamplify',
                 'cities': [{
