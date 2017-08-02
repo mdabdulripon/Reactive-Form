@@ -71,9 +71,21 @@ export class FormComponent implements OnInit {
 	initCities() {
 		return this._fb.group({
 			cityName: [''],
-			places: this._fb.array([]),
+			// places: this._fb.array([]),
 		})
 	}
+
+	addRow() {
+		alert('Adding');
+		const control = <FormArray>this.companyForm.controls['cities'];
+		control.push(this.initCities());
+	}
+	
+	removeRow() {
+		alert('Adding')
+	}
+
+
 
 	ngOnDestroy(): void {
 		this.sub.unsubscribe();
