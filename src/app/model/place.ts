@@ -1,3 +1,3 @@
-export interface Place {
-    placeName: string;
-}
+// export interface Place {
+//     placeName: string;
+// }

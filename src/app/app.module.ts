@@ -9,12 +9,17 @@ import { routes } from './app.routes';
 import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
 
-import { PassengerServiceService } from './passenger-service.service';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { CompanyData } from './company.data';
+
+import { companyServiceService } from './company-service.service';
+import { ListComponent } from './list/list.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         FormComponent,
+        ListComponent,
     ],
     imports: [
         BrowserModule,
@@ -22,9 +27,10 @@ import { PassengerServiceService } from './passenger-service.service';
         ReactiveFormsModule,
         HttpModule,
         RouterModule.forRoot(routes),
+        InMemoryWebApiModule.forRoot(CompanyData),
     ],
     providers: [
-        PassengerServiceService,
+        companyServiceService,
     ],
     bootstrap: [AppComponent]
 })

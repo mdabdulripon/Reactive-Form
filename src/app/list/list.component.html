@@ -1,0 +1,59 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<h1>
+				{{ pageTitle }}
+				<button class="pull-right btn btn-sm btn-info">
+					<a [routerLink]="['/company/create/']">Add Product</a>
+				</button>
+			</h1>
+	
+			<hr>
+
+			<div class="table-responsive">          
+				<table class="table table-striped">
+					<thead class="thead-inverse">
+						<tr>
+							<th>Company Name</th>
+							<th>Company URL</th>
+							<th>Company Bio</th>
+							<th>Facebook</th>
+							<th>Twitter</th>
+							<th>Linkedin</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor=" let profile of companies">
+							<td>
+								{{ profile.companyName }}
+							</td>
+							<td>
+								{{ profile.companyUrl }}
+							</td>
+							<td>
+								{{ profile.companyBio }}
+							</td>
+							<td>
+								{{ profile.facebook}}
+							</td>
+							<td>
+								{{ profile.twitter }}						
+							</td>
+							<td>
+								{{ profile.linkedin }}
+							</td>
+							<td>
+								<a [routerLink]="['/company/edit', profile.id]">
+									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+

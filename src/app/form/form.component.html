@@ -6,64 +6,78 @@
 
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
-
-		<div class="well">
-			<div class="btn-group btn-group-justified">
-				<a href="" [routerLink]="['/passenger', 'create']" class="btn btn-primary">Create Passenger</a>
-				<a href="" [routerLink]="['/passenger', 1, 'edit']" class="btn btn-primary">Edit Passenger</a>
-			</div>
-		</div>
-
-		<form [formGroup]="passengerForm" novalidate (ngSubmit)="onSubmit()">
-
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <br>
-                <input type="text" class="form-control" formControlName="name" required>
-            </div>
+		
+	 	<form [formGroup]="companyForm" novalidate (ngSubmit)="onSubmit()">
 
 			<div class="form-group">
-				<label for="numberofPassenger">Number Of Passenger:</label>
+				<label for="companyName">Company Name :</label>
 				<br>
-				<input type="text" class="form-control" formControlName="numberofPassenger">
-			</div>   
+				<input type="text" class="form-control" formControlName="companyName" required>
+			</div>
+
+			<div class="form-group">
+				<label for="companyUrl">Company URL :</label>
+				<br>
+				<input type="text" class="form-control" formControlName="companyUrl">
+			</div> 
+
+			<div class="form-group">
+				<label for="companyBio">Company Bio :</label>
+				<br>
+				<input type="text" class="form-control" formControlName="companyBio">
+			</div>  
+
+			 <div class="form-group">
+				<label for="facebook">Facebook :</label>
+				<br>
+				<input type="text" class="form-control" formControlName="facebook">
+			</div>  
+
+			<div class="form-group">
+				<label for="twitter">Twitter:</label>
+				<br>
+				<input type="text" class="form-control" formControlName="twitter">
+			</div>    
+
+			<div class="form-group">
+				<label for="linkedin">Linkdine :</label>
+				<br>
+				<input type="text" class="form-control" formControlName="linkedin">
+			</div>  
 			
-            <div formArrayName="cities" class="well">
+			<div class="table-responsive">          
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>City</th>
+							 <th>Country</th> 
+						</tr>
+					</thead>
+					<tbody>
+						<tr formArrayName="cities">
+							<td *ngFor="let city of companyForm.controls.cities.controls; let i=index" [formGroupName]="i">
+								<input type="text" class="form-control" formControlName="cityName">
+							</td>
+							 <!-- <td>
+								<div class="form-group">
+									<input type="text" class="form-control" formControlName="places">
+								</div>  
+							</td>  -->
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
 
-				<div *ngFor="let city of passengerForm.controls['cities'].controls; let i = index">
-                    <div formGroupName="{{i}}"> 
-                        <div class="form-group">
-                            <label for="street">City Name : </label>
-                            <br>
-                            <input type="text" class="form-control" formControlName="cityName">
-						</div>
 
-						<div formArrayName="places">
-							<div *ngFor="let place of city.controls['places'].controls; let j = index">
-								<div class="place-box" formGroupName="{{j}}">
-									 <div class="form-group">
-										<label for="street">Place Name : </label>
-										<br>
-										<input type="text" class="form-control" formControlName="placeName">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<button type="button" class="btn" (click)="addPlace(i)">ADD MORE PLACE</button> 
-					<hr>
-				</div>
-				
-				<button class="btn" type="button" (click)="addCity()">ADD MORE CITY</button>
-            </div>
 			<div class="row">
 				<div class="col-xs-12">
-					<button class="btn btn-warning" (click)="onCancel()">Cancel</button>
-					<button type="submit" *ngIf="!isEditing" class="btn btn-primary" [disabled]="!passengerForm.valid" >Save</button>
-					<button type="submit" *ngIf="isEditing" class="btn btn-primary" [disabled]="!passengerForm.valid" >Update</button>  
+					<button class="btn btn-warning" [routerLink]="['/']">Cancel</button>
+					<button type="submit" *ngIf="!isEditing" class="btn btn-primary" [disabled]="!companyForm.valid" >Save</button>
+					<button type="submit" *ngIf="isEditing" class="btn btn-primary" [disabled]="!companyForm.valid" >Update</button>  
 				</div>
 			</div>
-		</form>
+		</form> 
 	</div>
 </div>
 <br>
@@ -71,7 +85,7 @@
 
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
-		<h3>Form Validity: {{passengerForm.valid}}</h3>
-		<pre>{{ passengerForm.value | json }}</pre>  
+		 <h3>Form Validity: {{companyForm.valid}}</h3> 
+		 <pre>{{ companyForm.value | json }}</pre>   
 	</div>
 </div>

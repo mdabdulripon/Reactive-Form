@@ -1,98 +1,130 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl, Validators  } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators, FormControlName  } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/observable/merge';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription'
 // Model
-import { Place } from '../model/place';
 import { City } from '../model/city';
-import { Passenger } from '../model/passenger';
-
-import { PassengerServiceService } from '../passenger-service.service';
+import { CompanyInfo } from '../model/company';
+// Service
+import { companyServiceService } from '../company-service.service';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  styleUrls: ['./form.component.scss']
 })
+
 export class FormComponent implements OnInit {
 
+	title: string =  'Company Edit';
+	companyForm: FormGroup;
+	errorMessage: string;
 
-	title = 'REACTIVE FORM || MODEL DRIVEN FORM : UBER PASSANGER INFO';
-	passenger: Passenger;
-	passengerForm: FormGroup;
-	editingStatus: boolean = false;
+	companies: CompanyInfo;
+	private sub: Subscription;
+
+	displayMessage : { [ key: string]: string } = {};
+	private validationMessage: {
+		[key: string]: { [key: string] : string}
+	};
+
+	get places(): FormArray {
+        return <FormArray>this.companyForm.get('places');
+    }
 
 	constructor(
-		private fb: FormBuilder,
-		private activatedRoute: ActivatedRoute,
-		private myservice: PassengerServiceService
-	) {
-		if('id' in this.activatedRoute.snapshot.params) {
-			this.editingStatus = true;
+		private _fb: FormBuilder,
+		private route: ActivatedRoute,
+		private router: Router,
+		private _httpService: companyServiceService,
+	) {	
+		this.validationMessage = {
+
 		}
-	 }
+	}
 
 	ngOnInit() {
-		if (this.editingStatus) {
-			// this.passenger = this.
-			this.passenger = this.myservice.getPasserger()
-			this.initForm(this.passenger)
-		}else {
-			this.initForm()
-		}
+		this.companyForm = this._fb.group({
+			companyName:[''],
+			companyUrl: [''],
+			companyBio: [''],
+			facebook: [''],
+			twitter: [''],
+			linkedin: [''],
+			cities: this._fb.array([
+				this.initCities()
+			]),
+		});
+		this.sub = this.route.params.subscribe(
+			params => {
+				let id = +params['id'];
+				this.getCompany(id);
+			}
+		);
 	}
 
-	initForm(passenger?: Passenger ):void {
-		
-		let name: string;
-		if (passenger) {
-			name = passenger.name;
-		} else {
-			name = '';
-		}
-
-		let cities: FormArray = new FormArray([]);
-		let places: FormArray = new FormArray([]);
-
-		this.passengerForm = new FormGroup({
-			name: new FormControl('', Validators.required),
-			numberofPassenger: new FormControl('', Validators.required),
-			cities: cities
+	initCities() {
+		return this._fb.group({
+			cityName: [''],
+			// places: this._fb.array([]),
 		})
+	}
 
-		if(!passenger) {
-			this.addCity();
-			this.addPlace(0);
-		}else {
-			passenger.cities.forEach((city, cityIndex)=> {
-				this.addCity(city);
-				city.places.forEach((place, placeIndex)=> {
-					this.addPlace(cityIndex, place);
-				})
-			})
+	addRow() {
+		alert('Adding');
+		const control = <FormArray>this.companyForm.controls['cities'];
+		control.push(this.initCities());
+	}
+	
+	removeRow() {
+		alert('Adding')
+	}
+
+
+
+	ngOnDestroy(): void {
+		this.sub.unsubscribe();
+	}
+
+	addPlace(): void {
+        this.places.push(new FormControl());
+    }
+
+	getCompany(id: number): void {
+		this._httpService.getCompany(id).subscribe(
+			(companies: CompanyInfo)=> this.onCompanyRetrive(companies),
+			(error: any)=> this.errorMessage = <any>error
+		);
+	}
+
+	onCompanyRetrive(companies: CompanyInfo): void {
+		if(this.companyForm) {
+			this.companyForm.reset();
 		}
+		this.companies = companies;
+
+		if (this.companies.id === 0 ){
+			this.title = 'Add Company Profile'
+		}
+		else {
+			this.title = 'Edit Company Profile'
+		}
+
+
+		this.companyForm.patchValue ({
+			companyName: this.companies.companyName,
+			companyUrl: this.companies.companyUrl,
+			companyBio: this.companies.companyBio,
+			facebook: this.companies.facebook,
+			twitter: this.companies.twitter,
+			linkedin: this.companies.linkedin,
+		});
 	}
 
-	addCity(city?: City):void {
-		let places = new FormArray([]);
-		let name = city ? city.cityName: '';
-		(<FormArray>this.passengerForm.controls['cities']).push(
-			new FormGroup({
-				cityName: new FormControl(name, Validators.required),
-				places: places
-			})
-		)
-	}
-
-	addPlace(cityIndex: number, place?: Place):void {
-		let name = place ? place.placeName : '';
-
-		(<FormArray>(<FormGroup>(<FormArray>this.passengerForm.controls['cities'])
-      		.controls[cityIndex]).controls['places']).push(
-			new FormGroup({
-				placeName: new FormControl(name, Validators.required),
-			})
-		)
-	}
 
 }

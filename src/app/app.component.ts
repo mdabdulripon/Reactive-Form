@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 
-import { Passenger } from './model/passenger';
+import { CompanyInfo } from './model/company';
 
 
 
@@ -15,7 +15,7 @@ import { Passenger } from './model/passenger';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    styleUrls: ['./app.component.scss']
 })
 
 export class AppComponent implements OnInit {
