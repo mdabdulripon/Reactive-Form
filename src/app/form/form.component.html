@@ -6,39 +6,89 @@
 
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
-
-		<div class="well">
-			<div class="btn-group btn-group-justified">
-				<a href="" [routerLink]="['/passenger', 'create']" class="btn btn-primary">Create Passenger</a>
-				<a href="" [routerLink]="['/passenger', 1, 'edit']" class="btn btn-primary">Edit Passenger</a>
-			</div>
-		</div>
-
-		<!-- <form [formGroup]="passengerForm" novalidate (ngSubmit)="onSubmit()">
-
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <br>
-                <input type="text" class="form-control" formControlName="name" required>
-            </div>
+		
+	 	<form [formGroup]="companyForm" novalidate (ngSubmit)="onSubmit()">
 
 			<div class="form-group">
-				<label for="numberofPassenger">Number Of Passenger:</label>
+				<label for="companyName">Company Name :</label>
 				<br>
-				<input type="text" class="form-control" formControlName="numberofPassenger">
-			</div>   
+				<input type="text" class="form-control" formControlName="companyName" required>
+			</div>
+
+			<div class="form-group">
+				<label for="companyUrl">Company URL :</label>
+				<br>
+				<input type="text" class="form-control" formControlName="companyUrl">
+			</div> 
+
+			<div class="form-group">
+				<label for="companyBio">Company Bio :</label>
+				<br>
+				<input type="text" class="form-control" formControlName="companyBio">
+			</div>  
+
+			 <div class="form-group">
+				<label for="facebook">Facebook :</label>
+				<br>
+				<input type="text" class="form-control" formControlName="facebook">
+			</div>  
+
+			<div class="form-group">
+				<label for="twitter">Twitter:</label>
+				<br>
+				<input type="text" class="form-control" formControlName="twitter">
+			</div>    
+
+			<div class="form-group">
+				<label for="linkedin">Linkdine :</label>
+				<br>
+				<input type="text" class="form-control" formControlName="linkedin">
+			</div>  
 			
-            <div formArrayName="cities" class="well">
+			<div class="table-responsive">          
+				<table class="table">
+					<thead>
+						<tr>
+							<th>City</th>
+							<th>Country</th>
+							<th style="width: 50px"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<div class="form-group">
+									<input type="text" class="form-control" formControlName="cityName">
+								</div>  
+							</td>
+							<td>
+								<div class="form-group">
+									<input type="text" class="form-control" formControlName="places">
+								</div>  
+							</td>
+							<th>
+								<i class="fa fa-trash" aria-hidden="true"></i>
+								<i class="fa fa-plus-square" aria-hidden="true"></i>
+							</th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+					
+			
+			
+            <!-- <div formArrayName="cities" style="border: 2px solid #C00C00; padding: 30px; margin: 5px 0px">   -->
 
-				<div *ngFor="let city of passengerForm.controls['cities'].controls; let i = index" style="border: 2px solid #C00C00; padding: 30px; margin: 5px 0px">
-                    <div formGroupName="{{i}}"> 
-                        <div class="form-group">
-                            <label for="street">City Name : </label>
+				<!-- <div *ngFor="let city of companyForm.controls.cities.controls; let i = index"> -->
+                  
+
+                        <!-- <div class="form-group">
+                            <label for="cities">City Name : </label>
                             <br>
-                            <input type="text" class="form-control" formControlName="cityName">
-						</div>
+                            <input type="text" class="form-control" formControlName="cities">
+						</div>   -->
 
-						<div formArrayName="places">
+						<!-- <div formArrayName="places">
 							<div *ngFor="let place of city.controls['places'].controls; let j = index">
 								<div class="place-box" formGroupName="{{j}}">
 									 <div class="form-group">
@@ -48,21 +98,24 @@
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					<button type="button" class="btn" (click)="addPlace(i)">ADD MORE PLACE</button> 
-				</div>
-				<hr>
-				<button class="btn" type="button" (click)="addCity()">ADD MORE CITY</button>
-            </div>
+						</div> -->
+					
+					<!-- <button type="button" class="btn" (click)="addPlace(i)">ADD MORE PLACE</button>  -->
+				<!-- </div> -->
+				<!-- <hr> -->
+				<!-- <button class="btn" type="button" (click)="addCity()">ADD MORE CITY</button> -->
+			<!-- </div> -->
+			
+
+
 			<div class="row">
 				<div class="col-xs-12">
 					<button class="btn btn-warning" (click)="onCancel()">Cancel</button>
-					<button type="submit" *ngIf="!isEditing" class="btn btn-primary" [disabled]="!passengerForm.valid" >Save</button>
-					<button type="submit" *ngIf="isEditing" class="btn btn-primary" [disabled]="!passengerForm.valid" >Update</button>  
+					<button type="submit" *ngIf="!isEditing" class="btn btn-primary" [disabled]="!companyForm.valid" >Save</button>
+					<button type="submit" *ngIf="isEditing" class="btn btn-primary" [disabled]="!companyForm.valid" >Update</button>  
 				</div>
 			</div>
-		</form> -->
+		</form> 
 	</div>
 </div>
 <br>
@@ -70,7 +123,7 @@
 
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
-		<!-- <h3>Form Validity: {{passengerForm.valid}}</h3> -->
-		 <pre>{{ passengerForm.value | json }}</pre>   
+		 <h3>Form Validity: {{companyForm.valid}}</h3> 
+		 <pre>{{ companyForm.value | json }}</pre>   
 	</div>
 </div>

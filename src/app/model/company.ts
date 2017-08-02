@@ -6,7 +6,7 @@ export interface CompanyInfo {
     companyUrl: string;
     companyBio: string;
     facebook: string;
-    twiter: string;
+    twitter: string;
     linkedin: string;
     cities: City[];
 }

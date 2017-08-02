@@ -10,3 +10,25 @@
 body {
     background: red;
 }
+
+hr {
+    border: 2px solid #C00C00;
+} 
+
+input {
+    // border: 1px soild #4A4A4A;
+    border: 1px soild red;
+}
+
+table {
+    thead {
+        tr {
+            background: #4A4A4A;
+            color: #ffffff;
+            padding: 20px;
+        }
+    }
+    tbody {
+        border: 1px soild #4A4A4A;
+    }
+}

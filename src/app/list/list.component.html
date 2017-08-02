@@ -2,7 +2,10 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<h1>
-    			{{ pageTitle }}
+				{{ pageTitle }}
+				<button class="pull-right btn btn-sm btn-info">
+					<a [routerLink]="['/company/create/']">Add Product</a>
+				</button>
 			</h1>
 	
 			<hr>
@@ -41,7 +44,9 @@
 								{{ profile.linkedin }}
 							</td>
 							<td>
-								<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+								<a [routerLink]="['/company/edit', 'profile.id']">
+									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+								</a>
 							</td>
 						</tr>
 					</tbody>

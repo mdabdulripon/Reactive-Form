@@ -25,22 +25,18 @@ export class companyServiceService {
             .catch(this.handleError);
     }
 
-    // getProduct(id: number): Observable<Passenger> {
-    //     if (id === 0) {
-    //     return Observable.of(this.initializeProduct());
-    //     // return Observable.create((observer: any) => {
-    //     //     observer.next(this.initializeProduct());
-    //     //     observer.complete();
-    //     // });
-    //     };
-    //     const url = `${this.baseUrl}/${id}`;
-    //     return this.http.get(url)
-    //         .map(this.extractData)
-    //         .do(data => console.log('getProduct: ' + JSON.stringify(data)))
-    //         .catch(this.handleError);
-    // }
+    getCompany(id: number): Observable<CompanyInfo> {
+        if (id === 0) {
+            // return Observable.of(this.initializeProduct());
+        };
+        const url = `${this.baseUrl}/${id}`;
+        return this.http.get(url)
+            .map(this.extractData)
+            .do(data => console.log('getCompany: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
 
-    // deleteProduct(id: number): Observable<Response> {
+    // deleteCompany(id: number): Observable<Response> {
     //     let headers = new Headers({ 'Content-Type': 'application/json' });
     //     let options = new RequestOptions({ headers: headers });
 
@@ -86,17 +82,16 @@ export class companyServiceService {
         return Observable.throw(error.json().error || 'Server error');
     }
 
-    // initializeProduct(): Passenger {
+    // initializeProduct(): CompanyInfo {
     //     return {
     //         id: 0,
-    //         productName: null,
-    //         productCode: null,
-    //         tags: [''],
-    //         releaseDate: null,
-    //         price: null,
-    //         description: null,
-    //         starRating: null,
-    //         imageUrl: null
+    //         companyName: null,
+    //         companyUrl: null,
+    //         companyBio: null,
+    //         facebook: null,
+    //         twitter: null,
+    //         linkedin: null,
+    //         cities: [''],
     //     };
     // }
 }
