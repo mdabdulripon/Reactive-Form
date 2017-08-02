@@ -68,6 +68,12 @@ export class FormComponent implements OnInit {
 		);
 	}
 
+	setCities(cities: City[]) {
+        const city = cities.map(cities => this._fb.group(cities));
+        const citiesFormArray = this._fb.array(city);
+        this.companyForm.setControl('cities', citiesFormArray);
+    }
+
 	initCities() {
 		return this._fb.group({
 			cityName: [''],
@@ -124,6 +130,8 @@ export class FormComponent implements OnInit {
 			twitter: this.companies.twitter,
 			linkedin: this.companies.linkedin,
 		});
+		this.setCities(companies.cities);
+		// this.companyForm.setControl('cities', this._fb.array(this.companies.cities));
 	}
 
 
