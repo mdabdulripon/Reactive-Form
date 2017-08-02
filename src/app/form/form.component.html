@@ -50,7 +50,7 @@
 					<thead>
 						<tr>
 							<th>City</th>
-							 <th>Country</th> 
+							 <th>Place</th> 
 						</tr>
 					</thead>
 					<tbody>
@@ -58,11 +58,11 @@
 							<td *ngFor="let city of companyForm.controls.cities.controls; let i=index" [formGroupName]="i">
 								<input type="text" class="form-control" formControlName="cityName">
 							</td>
-							 <!-- <td>
-								<div class="form-group">
-									<input type="text" class="form-control" formControlName="places">
-								</div>  
-							</td>  -->
+							<td formArrayName="places">
+								<div  *ngFor="let p of city.controls.places.controls; let j=index" >
+									<input type="text" class="form-control"  [formControlName]="j">
+								</div>
+							</td>  
 						</tr>
 					</tbody>
 				</table>
