@@ -25,9 +25,9 @@ import { ListComponent } from './list/list.component';
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-        InMemoryWebApiModule.forRoot(CompanyData),
         HttpModule,
         RouterModule.forRoot(routes),
+        InMemoryWebApiModule.forRoot(CompanyData),
     ],
     providers: [
         companyServiceService,

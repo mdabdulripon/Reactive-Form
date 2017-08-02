@@ -1,11 +1,10 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-
 import { CompanyInfo } from './model/company';
 
 export class CompanyData implements InMemoryDbService {
     
     createDb() {
-        let company: CompanyInfo[] = [
+        let companies: CompanyInfo[] = [
             {
                 'id': 1,
                 'companyName': 'Aamplify',
@@ -18,7 +17,7 @@ export class CompanyData implements InMemoryDbService {
                     'cityName': 'NYC',
                     'places': ['Bronx', 'Quuens', 'Staten Island' ]
                 },{
-                    'cityName': 'New Jersey',
+                    'cityName': 'New York',
                     'places': ['Queens Village', 'Jamaica']
                 }]
             },
@@ -31,8 +30,8 @@ export class CompanyData implements InMemoryDbService {
                 'twiter': 'https://twitter.com/Aamplifynz',
                 'linkedin': 'https://nz.linkedin.com/company/aamplify',
                 'cities': [{
-                    'cityName': 'Salt lake city',
-                    'places': ['New Jersey', 'Garden State']
+                    'cityName': 'New Jerssy',
+                    'places': ['Newark', 'Essex', 'Passaic']
                 }]
             },
             {
@@ -44,11 +43,50 @@ export class CompanyData implements InMemoryDbService {
                 'twiter': 'https://twitter.com/Aamplifynz',
                 'linkedin': 'https://nz.linkedin.com/company/aamplify',
                 'cities': [{
-                    'cityName': 'Salt lake city',
-                    'places': ['New Jersey', 'Garden State']
+                    'cityName': 'New York',
+                    'places': ['Staten Island', 'Brooklyn']
+                }]
+            },
+            {
+                'id': 4,
+                'companyName': 'Zinith',
+                'companyUrl': 'http://www.aamplify.partners/',
+                'companyBio': 'Outsource marketing & digital expertise.',
+                'facebook': '',
+                'twiter': 'https://twitter.com/Aamplifynz',
+                'linkedin': 'https://nz.linkedin.com/company/aamplify',
+                'cities': [{
+                    'cityName': 'Pennsylvania',
+                    'places': ['Fire Field', 'Philadephia']
+                }]
+            },
+            {
+                'id': 5,
+                'companyName': 'Apex',
+                'companyUrl': 'http://www.aamplify.partners/',
+                'companyBio': 'Outsource marketing & digital expertise.',
+                'facebook': '',
+                'twiter': 'https://twitter.com/Aamplifynz',
+                'linkedin': 'https://nz.linkedin.com/company/aamplify',
+                'cities': [{
+                    'cityName': 'New Jersey',
+                    'places': ['Jersey City', 'Hoboken']
+                }]
+            },
+            {
+                'id': 6,
+                'companyName': 'Ajax',
+                'companyUrl': 'http://www.aamplify.partners/',
+                'companyBio': 'Outsource marketing & digital expertise.',
+                'facebook': '',
+                'twiter': 'https://twitter.com/Aamplifynz',
+                'linkedin': 'https://nz.linkedin.com/company/aamplify',
+                'cities': [{
+                    'cityName': 'New York',
+                    'places': ['Queens', 'Garden State']
                 }]
             }
         ]
-        return {company};
+        return { companies };
     }
 }

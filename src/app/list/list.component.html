@@ -1,3 +1,47 @@
-<p>
-  list works!
-</p>
+<div class="container">
+    <h1>
+    	{{ pageTitle }}
+	</h1>
+
+	<br>
+
+	
+	<div class="table-responsive">          
+		<table class="table table-striped">
+			<thead class="thead-inverse">
+				<tr>
+					<th>Company Name</th>
+					<th>Company URL</th>
+					<th>Company Bio</th>
+					<th>Facebook</th>
+					<th>Twitter</th>
+					<th>Linkedin</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor=" let profile of company">
+					<td>
+						{{ company.companyName }}
+					</td>
+					<td>
+						{{ company.companyUrl }}
+					</td>
+					<td>
+						{{ company.companyBio }}
+					</td>
+					<td>
+						{{ company.facebook}}
+					</td>
+					<td>
+						{{ company.twitter }}						
+					</td>
+					<td>
+						{{ company.linkedin }}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+

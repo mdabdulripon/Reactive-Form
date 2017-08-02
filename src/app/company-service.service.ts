@@ -9,19 +9,19 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 
 import { CompanyInfo } from './model/company';
-import { City } from './model/city';
+import { CompanyData } from './company.data';
 
 @Injectable()
 export class companyServiceService {
 
-    private baseUrl = 'api/company'
+    private baseUrl = 'api/companies';
 
 	constructor(private http: Http) { }
 
-	getProducts(): Observable<CompanyInfo[]> {
+	getCompanies(): Observable<CompanyInfo[]> {
         return this.http.get(this.baseUrl)
             .map(this.extractData)
-            .do(data => console.log('getProducts: ' + JSON.stringify(data)))
+            .do(data => console.log('getCompanies: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
