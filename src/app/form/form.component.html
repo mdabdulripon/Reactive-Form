@@ -44,8 +44,16 @@
 				<br>
 				<input type="text" class="form-control" formControlName="linkedin">
 			</div>  
+
+			<div class="form-group" formArrayName="categories">
+				<span *ngFor="let categorie of categories.controls; let i=index">
+					<label for="linkedin">Categories :</label>
+					<br>
+					<input type="text" class="form-control" [formControlName]="i">
+				</span>
+			</div>  
 			
-			<div class="table-responsive">          
+			 <div class="table-responsive">          
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
@@ -53,9 +61,9 @@
 							 <th>Place</th> 
 						</tr>
 					</thead>
-					<tbody>
-						<tr formArrayName="cities">
-							<td *ngFor="let city of companyForm.controls.cities.controls; let i=index" [formGroupName]="i">
+					<tbody formArrayName="cities">
+						<tr *ngFor="let city of companyForm.controls.cities.controls; let i=index" [formGroupName]="i">
+							<td>
 								<input type="text" class="form-control" formControlName="cityName">
 							</td>
 							<td formArrayName="places">
@@ -66,7 +74,7 @@
 						</tr>
 					</tbody>
 				</table>
-			</div>
+			</div> 
 			
 
 

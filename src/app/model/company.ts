@@ -8,5 +8,6 @@ export interface CompanyInfo {
     facebook: string;
     twitter: string;
     linkedin: string;
+    categories?: string[];
     cities: City[];
 }
