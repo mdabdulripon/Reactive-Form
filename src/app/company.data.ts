@@ -13,6 +13,7 @@ export class CompanyData implements InMemoryDbService {
                 'facebook': 'https://facebook.com/Aamplifynz',
                 'twitter': 'https://twitter.com/Aamplifynz',
                 'linkedin': 'https://nz.linkedin.com/company/aamplify',
+                'categories': ['rake', 'leaf', 'yard', 'home'],
                 'cities': [{
                     'cityName': 'NYC',
                     'places': ['Bronx', 'Quuens', 'Staten Island' ]
@@ -29,6 +30,7 @@ export class CompanyData implements InMemoryDbService {
                 'facebook': 'https://twitter.com/Bluescape',
                 'twitter': 'https://twitter.com/Aamplifynz',
                 'linkedin': 'https://nz.linkedin.com/company/aamplify',
+                'categories': ['rake', 'leaf', 'yard', 'home', 'kazi' ],
                 'cities': [{
                     'cityName': 'New Jerssy',
                     'places': ['Newark', 'Essex', 'Passaic']
@@ -42,6 +44,7 @@ export class CompanyData implements InMemoryDbService {
                 'facebook': 'https://twitter.com/Celtra',
                 'twitter': 'https://twitter.com/Aamplifynz',
                 'linkedin': 'https://nz.linkedin.com/company/aamplify',
+                'categories': ['rake', 'leaf', 'yard', 'home'],
                 'cities': [{
                     'cityName': 'New York',
                     'places': ['Staten Island', 'Brooklyn']
@@ -55,6 +58,7 @@ export class CompanyData implements InMemoryDbService {
                 'facebook': 'https://facebook.com/Zinith',
                 'twitter': 'https://twitter.com/Aamplifynz',
                 'linkedin': 'https://nz.linkedin.com/company/aamplify',
+                'categories': ['rake', 'leaf', 'yard', 'home'],
                 'cities': [{
                     'cityName': 'Pennsylvania',
                     'places': ['Fire Field', 'Philadephia']
@@ -68,6 +72,7 @@ export class CompanyData implements InMemoryDbService {
                  'facebook': 'https://facebook.com/Apex',
                 'twitter': 'https://twitter.com/Aamplifynz',
                 'linkedin': 'https://nz.linkedin.com/company/aamplify',
+                'categories': ['rake', 'leaf', 'yard', 'home'],
                 'cities': [{
                     'cityName': 'New Jersey',
                     'places': ['Jersey City', 'Hoboken']
@@ -81,6 +86,7 @@ export class CompanyData implements InMemoryDbService {
                 'facebook': 'https://facebook.com/Ajax',
                 'twitter': 'https://twitter.com/Aamplifynz',
                 'linkedin': 'https://nz.linkedin.com/company/aamplify',
+                'categories': ['rake', 'leaf', 'yard', 'home'],
                 'cities': [{
                     'cityName': 'New York',
                     'places': ['Queens', 'Garden State']

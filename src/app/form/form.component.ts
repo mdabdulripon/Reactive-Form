@@ -35,6 +35,10 @@ export class FormComponent implements OnInit {
 
 	get places(): FormArray {
         return <FormArray>this.companyForm.get('places');
+	}
+	
+	get categories(): FormArray {
+        return <FormArray>this.companyForm.get('categories');
     }
 
 	constructor(
@@ -56,6 +60,7 @@ export class FormComponent implements OnInit {
 			facebook: [''],
 			twitter: [''],
 			linkedin: [''],
+			categories: this._fb.array([]),
 			cities: this._fb.array([
 				this.initCities()
 			]),
@@ -71,13 +76,14 @@ export class FormComponent implements OnInit {
 	setCities(cities: City[]) {
         const city = cities.map(cities => this._fb.group(cities));
         const citiesFormArray = this._fb.array(city);
-        this.companyForm.setControl('cities', citiesFormArray);
+		this.companyForm.setControl('cities', citiesFormArray);
+		// this.companyForm.setControl('places', )
     }
 
 	initCities() {
 		return this._fb.group({
 			cityName: [''],
-			// places: this._fb.array([]),
+			places: this._fb.array([]),
 		})
 	}
 
@@ -98,6 +104,10 @@ export class FormComponent implements OnInit {
 	}
 
 	addPlace(): void {
+        this.places.push(new FormControl());
+    }
+
+	addCategories(): void {
         this.places.push(new FormControl());
     }
 
@@ -130,8 +140,9 @@ export class FormComponent implements OnInit {
 			twitter: this.companies.twitter,
 			linkedin: this.companies.linkedin,
 		});
+		this.companyForm.setControl('categories', this._fb.array(this.companies.categories));
 		this.setCities(companies.cities);
-		// this.companyForm.setControl('cities', this._fb.array(this.companies.cities));
+		// this.companyForm.setControl('cities', this._fb.array(this.companies.cities.));
 	}
 
 
