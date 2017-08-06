@@ -56,7 +56,7 @@ export class FormComponent implements OnInit {
 		}
 	}
 
-	ngOnInit() {
+	ngOnInit(): void {
 		this.companyForm = this._fb.group({
 			companyName:[''],
 			companyUrl: [''],
@@ -91,8 +91,14 @@ export class FormComponent implements OnInit {
 		return this._fb.group({
 			cityName: [''],
 			state: [''],
-			places: this._fb.array([['']]),
+			places: this._fb.array([
+				this.initPlaces()
+			]),
 		})
+	}
+
+	initPlaces() {
+		return this._fb.array([''])
 	}
 
 	addCity() {
