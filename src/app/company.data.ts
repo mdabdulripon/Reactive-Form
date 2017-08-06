@@ -17,11 +17,11 @@ export class CompanyData implements InMemoryDbService {
                 'cities': [{
                     'cityName': 'Ohio',
                     'state': 'OH',
-                    // 'places': ['Bronx', 'Quuens', 'Staten Island' ]
+                    'places': ['Bronx', 'Quuens', 'Staten Island' ],
                 },{
                     'cityName': 'New York',
                     'state': 'NY',
-                    // 'places': ['Queens Village', 'Jamaica']
+                    'places': ['Queens Village', 'Jamaica'],
                 }]
             },
             {
@@ -36,7 +36,7 @@ export class CompanyData implements InMemoryDbService {
                 'cities': [{
                     'cityName': 'New Jerssy',
                     'state': 'NJ',
-                    // 'places': ['Newark', 'Essex', 'Passaic']
+                    'places': ['Newark', 'Essex', 'Passaic'],
                 }]
             },
             {
@@ -51,7 +51,7 @@ export class CompanyData implements InMemoryDbService {
                 'cities': [{
                     'cityName': 'New York',
                     'state': 'NY',
-                    // 'places': ['Staten Island', 'Brooklyn']
+                    'places': ['Staten Island', 'Brooklyn'],
                 }]
             },
             {
@@ -66,7 +66,7 @@ export class CompanyData implements InMemoryDbService {
                 'cities': [{
                     'cityName': 'Pennsylvania',
                     'state': 'PA',
-                    // 'places': ['Fire Field', 'Philadephia']
+                    'places': ['Fire Field', 'Philadephia'],
                 }]
             },
             {
@@ -81,7 +81,7 @@ export class CompanyData implements InMemoryDbService {
                 'cities': [{
                     'cityName': 'New Jersey',
                     'state': 'NJ',
-                    // 'places': ['Jersey City', 'Hoboken']
+                    'places': ['Jersey City', 'Hoboken'],
                 }]
             },
             {
@@ -96,7 +96,7 @@ export class CompanyData implements InMemoryDbService {
                 'cities': [{
                     'cityName': 'New York',
                     'state': 'NY',
-                    // 'places': ['Queens', 'Garden State']
+                    'places': ['Queens', 'Garden State'],
                 }]
             }
         ]

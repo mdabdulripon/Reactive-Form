@@ -85,10 +85,8 @@ export class FormComponent implements OnInit {
 	initCities() {
 		return this._fb.group({
 			cityName: [''],
-			state: ['']
-			// places: this._fb.array([
-			// 	['']
-			// ]),
+			state: [''],
+			places: this._fb.array([]),
 		})
 	}
 
