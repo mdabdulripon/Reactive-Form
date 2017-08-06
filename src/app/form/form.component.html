@@ -58,26 +58,39 @@
 					<thead>
 						<tr>
 							<th>City</th>
-							 <th>Place</th> 
+							<th>State</th>
+							<th>Place</th>  
+							<th style="width: 50px">Actions</th>
 						</tr>
 					</thead>
 					<tbody formArrayName="cities">
-						<tr *ngFor="let city of companyForm.controls.cities.controls; let i=index" [formGroupName]="i">
+						<tr *ngFor="let city of cities.controls; let j=index" [formGroupName]="j">
 							<td>
 								<input type="text" class="form-control" formControlName="cityName">
 							</td>
+							<td>
+								<input type="text" class="form-control" formControlName="state">
+							</td>
+
 							<td formArrayName="places">
-								<div  *ngFor="let p of city.controls.places.controls; let j=index" >
-									<input type="text" class="form-control"  [formControlName]="j">
+								<div  *ngFor="let place of city.controls.places.controls; let k=index" [formGroupName]="k">
+									<input type="text" class="form-control"  [formControlName]="k">
 								</div>
-							</td>  
+							</td> 
+
+							<td>
+								<button class="btn btn-danger btn-xs" (click)="removeCity(j)">
+									<i class="fa fa-trash" aria-hidden="true"></i>
+								</button>  
+								<button class="btn btn-warning btn-xs" (click)="addCity()">
+									<i class="fa fa-plus-square" aria-hidden="true"></i>
+								</button> 
+							</td> 
 						</tr>
 					</tbody>
 				</table>
 			</div> 
-			
-
-
+			<hr>
 			<div class="row">
 				<div class="col-xs-12">
 					<button class="btn btn-warning" [routerLink]="['/']">Cancel</button>

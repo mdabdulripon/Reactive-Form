@@ -21,7 +21,7 @@ import { companyServiceService } from '../company-service.service';
 
 export class FormComponent implements OnInit {
 
-	title: string =  'Company Edit';
+	title: string =  'Create Company';
 	companyForm: FormGroup;
 	errorMessage: string;
 
@@ -32,6 +32,10 @@ export class FormComponent implements OnInit {
 	private validationMessage: {
 		[key: string]: { [key: string] : string}
 	};
+
+	get cities(): FormArray {
+        return <FormArray>this.companyForm.get('cities');
+	}
 
 	get places(): FormArray {
         return <FormArray>this.companyForm.get('places');
@@ -72,32 +76,36 @@ export class FormComponent implements OnInit {
 			}
 		);
 	}
-
 	setCities(cities: City[]) {
         const city = cities.map(cities => this._fb.group(cities));
         const citiesFormArray = this._fb.array(city);
 		this.companyForm.setControl('cities', citiesFormArray);
-		// this.companyForm.setControl('places', )
-    }
+	}
+	setPlace(places: any[]) {
+        const place = places.map(places => this._fb.array(places));
+        const placeFormArray = this._fb.array(place);
+		this.companyForm.setControl('places', placeFormArray);
+	}
 
 	initCities() {
 		return this._fb.group({
 			cityName: [''],
-			places: this._fb.array([]),
+			state: [''],
+			places: this._fb.array([['']]),
 		})
 	}
 
-	addRow() {
-		alert('Adding');
+	addCity() {
+		// alert('Adding');
 		const control = <FormArray>this.companyForm.controls['cities'];
 		control.push(this.initCities());
 	}
 	
-	removeRow() {
-		alert('Adding')
+	removeCity(j: number) {
+		// alert('removing');
+		const control = <FormArray>this.companyForm.controls['cities'];
+		control.removeAt(j);
 	}
-
-
 
 	ngOnDestroy(): void {
 		this.sub.unsubscribe();
@@ -130,8 +138,6 @@ export class FormComponent implements OnInit {
 		else {
 			this.title = 'Edit Company Profile'
 		}
-
-
 		this.companyForm.patchValue ({
 			companyName: this.companies.companyName,
 			companyUrl: this.companies.companyUrl,
@@ -142,8 +148,5 @@ export class FormComponent implements OnInit {
 		});
 		this.companyForm.setControl('categories', this._fb.array(this.companies.categories));
 		this.setCities(companies.cities);
-		// this.companyForm.setControl('cities', this._fb.array(this.companies.cities.));
 	}
-
-
 }
