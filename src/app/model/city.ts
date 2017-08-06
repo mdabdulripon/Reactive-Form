@@ -1,4 +1,5 @@
 export interface City {
     cityName: string;
-    places?: string[];
+    state: string;
+    // places?: string[];
 }

@@ -21,7 +21,7 @@ import { companyServiceService } from '../company-service.service';
 
 export class FormComponent implements OnInit {
 
-	title: string =  'Company Edit';
+	title: string =  'Create Company';
 	companyForm: FormGroup;
 	errorMessage: string;
 
@@ -32,6 +32,10 @@ export class FormComponent implements OnInit {
 	private validationMessage: {
 		[key: string]: { [key: string] : string}
 	};
+
+	get cities(): FormArray {
+        return <FormArray>this.companyForm.get('cities');
+	}
 
 	get places(): FormArray {
         return <FormArray>this.companyForm.get('places');
@@ -72,18 +76,19 @@ export class FormComponent implements OnInit {
 			}
 		);
 	}
-
 	setCities(cities: City[]) {
         const city = cities.map(cities => this._fb.group(cities));
         const citiesFormArray = this._fb.array(city);
 		this.companyForm.setControl('cities', citiesFormArray);
-		// this.companyForm.setControl('places', )
     }
 
 	initCities() {
 		return this._fb.group({
 			cityName: [''],
-			places: this._fb.array([]),
+			state: ['']
+			// places: this._fb.array([
+			// 	['']
+			// ]),
 		})
 	}
 
@@ -130,8 +135,6 @@ export class FormComponent implements OnInit {
 		else {
 			this.title = 'Edit Company Profile'
 		}
-
-
 		this.companyForm.patchValue ({
 			companyName: this.companies.companyName,
 			companyUrl: this.companies.companyUrl,
@@ -142,8 +145,7 @@ export class FormComponent implements OnInit {
 		});
 		this.companyForm.setControl('categories', this._fb.array(this.companies.categories));
 		this.setCities(companies.cities);
-		// this.companyForm.setControl('cities', this._fb.array(this.companies.cities.));
+		// this.companyForm.setControl('cities', this._fb.array(this.companies.cities));
+		// this.companyForm.setControl('places', this._fb.array(this.companies.places))
 	}
-
-
 }

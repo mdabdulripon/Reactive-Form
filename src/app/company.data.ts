@@ -15,11 +15,13 @@ export class CompanyData implements InMemoryDbService {
                 'linkedin': 'https://nz.linkedin.com/company/aamplify',
                 'categories': ['rake', 'leaf', 'yard', 'home'],
                 'cities': [{
-                    'cityName': 'NYC',
-                    'places': ['Bronx', 'Quuens', 'Staten Island' ]
+                    'cityName': 'Ohio',
+                    'state': 'OH',
+                    // 'places': ['Bronx', 'Quuens', 'Staten Island' ]
                 },{
                     'cityName': 'New York',
-                    'places': ['Queens Village', 'Jamaica']
+                    'state': 'NY',
+                    // 'places': ['Queens Village', 'Jamaica']
                 }]
             },
             {
@@ -33,7 +35,8 @@ export class CompanyData implements InMemoryDbService {
                 'categories': ['rake', 'leaf', 'yard', 'home', 'kazi' ],
                 'cities': [{
                     'cityName': 'New Jerssy',
-                    'places': ['Newark', 'Essex', 'Passaic']
+                    'state': 'NJ',
+                    // 'places': ['Newark', 'Essex', 'Passaic']
                 }]
             },
             {
@@ -47,7 +50,8 @@ export class CompanyData implements InMemoryDbService {
                 'categories': ['rake', 'leaf', 'yard', 'home'],
                 'cities': [{
                     'cityName': 'New York',
-                    'places': ['Staten Island', 'Brooklyn']
+                    'state': 'NY',
+                    // 'places': ['Staten Island', 'Brooklyn']
                 }]
             },
             {
@@ -61,7 +65,8 @@ export class CompanyData implements InMemoryDbService {
                 'categories': ['rake', 'leaf', 'yard', 'home'],
                 'cities': [{
                     'cityName': 'Pennsylvania',
-                    'places': ['Fire Field', 'Philadephia']
+                    'state': 'PA',
+                    // 'places': ['Fire Field', 'Philadephia']
                 }]
             },
             {
@@ -75,7 +80,8 @@ export class CompanyData implements InMemoryDbService {
                 'categories': ['rake', 'leaf', 'yard', 'home'],
                 'cities': [{
                     'cityName': 'New Jersey',
-                    'places': ['Jersey City', 'Hoboken']
+                    'state': 'NJ',
+                    // 'places': ['Jersey City', 'Hoboken']
                 }]
             },
             {
@@ -89,7 +95,8 @@ export class CompanyData implements InMemoryDbService {
                 'categories': ['rake', 'leaf', 'yard', 'home'],
                 'cities': [{
                     'cityName': 'New York',
-                    'places': ['Queens', 'Garden State']
+                    'state': 'NY',
+                    // 'places': ['Queens', 'Garden State']
                 }]
             }
         ]
