@@ -80,13 +80,18 @@ export class FormComponent implements OnInit {
         const city = cities.map(cities => this._fb.group(cities));
         const citiesFormArray = this._fb.array(city);
 		this.companyForm.setControl('cities', citiesFormArray);
-    }
+	}
+	setPlace(places: any[]) {
+        const place = places.map(places => this._fb.array(places));
+        const placeFormArray = this._fb.array(place);
+		this.companyForm.setControl('places', placeFormArray);
+	}
 
 	initCities() {
 		return this._fb.group({
 			cityName: [''],
 			state: [''],
-			places: this._fb.array([]),
+			places: this._fb.array([['']]),
 		})
 	}
 

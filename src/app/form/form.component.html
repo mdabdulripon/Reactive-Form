@@ -71,11 +71,13 @@
 							<td>
 								<input type="text" class="form-control" formControlName="state">
 							</td>
+
 							<td formArrayName="places">
-								<div  *ngFor="let p of city.controls.places.controls; let k=index" [formGroupName]="k">
+								<div  *ngFor="let place of city.controls.places.controls; let k=index" [formGroupName]="k">
 									<input type="text" class="form-control"  [formControlName]="k">
 								</div>
 							</td> 
+
 							<td>
 								<button class="btn btn-danger btn-xs" (click)="removeCity(j)">
 									<i class="fa fa-trash" aria-hidden="true"></i>
