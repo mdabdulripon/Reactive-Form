@@ -90,17 +90,17 @@ export class FormComponent implements OnInit {
 		})
 	}
 
-	addRow() {
-		alert('Adding');
+	addCity() {
+		// alert('Adding');
 		const control = <FormArray>this.companyForm.controls['cities'];
 		control.push(this.initCities());
 	}
 	
-	removeRow() {
-		alert('Adding')
+	removeCity(j: number) {
+		// alert('removing');
+		const control = <FormArray>this.companyForm.controls['cities'];
+		control.removeAt(j);
 	}
-
-
 
 	ngOnDestroy(): void {
 		this.sub.unsubscribe();
@@ -143,7 +143,5 @@ export class FormComponent implements OnInit {
 		});
 		this.companyForm.setControl('categories', this._fb.array(this.companies.categories));
 		this.setCities(companies.cities);
-		// this.companyForm.setControl('cities', this._fb.array(this.companies.cities));
-		// this.companyForm.setControl('places', this._fb.array(this.companies.places))
 	}
 }
