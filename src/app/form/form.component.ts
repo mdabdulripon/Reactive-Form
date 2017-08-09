@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl, Validators, FormControlName  } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators, FormControlName } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import 'rxjs/add/operator/debounceTime';
@@ -14,51 +14,57 @@ import { CompanyInfo } from '../model/company';
 import { companyServiceService } from '../company-service.service';
 
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+	selector: 'app-form',
+	templateUrl: './form.component.html',
+	styleUrls: ['./form.component.scss']
 })
 
 export class FormComponent implements OnInit {
 
-	title: string =  'Create Company';
+	title: string = 'Create Company';
 	companyForm: FormGroup;
 	errorMessage: string;
 
 	companies: CompanyInfo;
 	private sub: Subscription;
 
-	displayMessage : { [ key: string]: string } = {};
+	displayMessage: { [key: string]: string } = {};
 	private validationMessage: {
-		[key: string]: { [key: string] : string}
+		[key: string]: { [key: string]: string }
 	};
-
+	show = false;
 	get cities(): FormArray {
-        return <FormArray>this.companyForm.get('cities');
+		return <FormArray>this.companyForm.get('cities');
 	}
 
 	get places(): FormArray {
-        return <FormArray>this.companyForm.get('places');
+		return <FormArray>this.companyForm.get('places');
 	}
-	
+
 	get categories(): FormArray {
-        return <FormArray>this.companyForm.get('categories');
-    }
+		return <FormArray>this.companyForm.get('categories');
+	}
 
 	constructor(
 		private _fb: FormBuilder,
 		private route: ActivatedRoute,
 		private router: Router,
 		private _httpService: companyServiceService,
-	) {	
+	) {
 		this.validationMessage = {
 
 		}
 	}
-
+	onSubmit(form){
+		form.cities = form.cities.map(city=>{
+			city.places = city.places.split(/(?:,| )+/);
+			return city
+		})
+		console.log(form);
+	}
 	ngOnInit(): void {
 		this.companyForm = this._fb.group({
-			companyName:[''],
+			companyName: [''],
 			companyUrl: [''],
 			companyBio: [''],
 			facebook: [''],
@@ -77,13 +83,24 @@ export class FormComponent implements OnInit {
 		);
 	}
 	setCities(cities: City[]) {
-        const city = cities.map(cities => this._fb.group(cities));
-        const citiesFormArray = this._fb.array(city);
-		this.companyForm.setControl('cities', citiesFormArray);
+		// const city = cities.map(cities => this._fb.control(cities));
+		// const citiesFormArray = this._fb.array(city);
+		// this.companyForm.setControl('cities', citiesFormArray);
+		let formCities = this._fb.array([]);
+		for (let city of cities) {
+			let CITY = this._fb.group({
+				cityName: this._fb.control(city.cityName),
+				state: this._fb.control(city.state),
+				places: this._fb.control(city.places.join(", "))
+			})
+			formCities.push(CITY);
+		}
+		this.companyForm.setControl('cities', formCities);
+		this.show = true;
 	}
 	setPlace(places: any[]) {
-        const place = places.map(places => this._fb.array(places));
-        const placeFormArray = this._fb.array(place);
+		const place = places.map(places => this._fb.array(places));
+		const placeFormArray = this._fb.array(place);
 		this.companyForm.setControl('places', placeFormArray);
 	}
 
@@ -91,9 +108,7 @@ export class FormComponent implements OnInit {
 		return this._fb.group({
 			cityName: [''],
 			state: [''],
-			places: this._fb.array([
-				this.initPlaces()
-			]),
+			places: [''],
 		})
 	}
 
@@ -106,7 +121,7 @@ export class FormComponent implements OnInit {
 		const control = <FormArray>this.companyForm.controls['cities'];
 		control.push(this.initCities());
 	}
-	
+
 	removeCity(j: number) {
 		// alert('removing');
 		const control = <FormArray>this.companyForm.controls['cities'];
@@ -118,33 +133,35 @@ export class FormComponent implements OnInit {
 	}
 
 	addPlace(): void {
-        this.places.push(new FormControl());
-    }
+		this.places.push(new FormControl());
+	}
 
 	addCategories(): void {
-        this.places.push(new FormControl());
-    }
+		this.places.push(new FormControl());
+	}
 
 	getCompany(id: number): void {
 		this._httpService.getCompany(id).subscribe(
-			(companies: CompanyInfo)=> this.onCompanyRetrive(companies),
-			(error: any)=> this.errorMessage = <any>error
+			(companies: CompanyInfo) => {
+				this.onCompanyRetrive(companies)
+			},
+			(error: any) => this.errorMessage = <any>error
 		);
 	}
 
 	onCompanyRetrive(companies: CompanyInfo): void {
-		if(this.companyForm) {
+		if (this.companyForm) {
 			this.companyForm.reset();
 		}
 		this.companies = companies;
 
-		if (this.companies.id === 0 ){
+		if (this.companies.id === 0) {
 			this.title = 'Add Company Profile'
 		}
 		else {
 			this.title = 'Edit Company Profile'
 		}
-		this.companyForm.patchValue ({
+		this.companyForm.patchValue({
 			companyName: this.companies.companyName,
 			companyUrl: this.companies.companyUrl,
 			companyBio: this.companies.companyBio,
