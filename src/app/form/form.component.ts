@@ -57,7 +57,9 @@ export class FormComponent implements OnInit {
 	}
 	onSubmit(form){
 		form.cities = form.cities.map(city=>{
-			city.places = city.places.split(/(?:,| )+/);
+			if(typeof(city.places)== "string"){
+				city.places = city.places.split(/(?:,| )+/);
+			}
 			return city
 		})
 		console.log(form);
